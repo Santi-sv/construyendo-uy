@@ -1,0 +1,26 @@
+{
+  "desktop": {
+    "small": {
+      "src": "/images/hero/interior-trabajadores-desktop-small.webp",
+      "width": 1280,
+      "height": 720
+    },
+    "large": {
+      "src": "/images/hero/interior-trabajadores-desktop-large.webp",
+      "width": 1672,
+      "height": 941
+    }
+  },
+  "mobile": {
+    "small": {
+      "src": "/images/hero/interior-trabajadores-mobile-small.webp",
+      "width": 640,
+      "height": 600
+    },
+    "large": {
+      "src": "/images/hero/interior-trabajadores-mobile-large.webp",
+      "width": 1004,
+      "height": 941
+    }
+  }
+}

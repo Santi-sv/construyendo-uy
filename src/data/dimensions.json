@@ -1,0 +1,110 @@
+{
+  "piso-marmol-negro": {
+    "width": 1200,
+    "height": 1600
+  },
+  "librillo-parrillero": {
+    "width": 880,
+    "height": 1173
+  },
+  "piscina-escalera": {
+    "width": 853,
+    "height": 1516
+  },
+  "bano-madera-oxido": {
+    "width": 2000,
+    "height": 2667
+  },
+  "piso-madera-1": {
+    "width": 1242,
+    "height": 1600
+  },
+  "librillo-parrilla": {
+    "width": 2000,
+    "height": 1500
+  },
+  "escalera-exterior": {
+    "width": 880,
+    "height": 660
+  },
+  "bano-bloques": {
+    "width": 2000,
+    "height": 3556
+  },
+  "librillo-pared": {
+    "width": 2000,
+    "height": 1500
+  },
+  "piscina-fondo": {
+    "width": 1536,
+    "height": 2048
+  },
+  "piso-madera-2": {
+    "width": 1230,
+    "height": 1600
+  },
+  "bano-marmol-blanco": {
+    "width": 1265,
+    "height": 1570
+  },
+  "librillo-fachada": {
+    "width": 880,
+    "height": 660
+  },
+  "bano-marmol-negro": {
+    "width": 1220,
+    "height": 1600
+  },
+  "piso-marmol-blanco": {
+    "width": 1266,
+    "height": 1600
+  },
+  "librillo-detalle": {
+    "width": 1536,
+    "height": 2048
+  },
+  "piscina-obra": {
+    "width": 1152,
+    "height": 2048
+  },
+  "bano-oxido": {
+    "width": 2000,
+    "height": 2667
+  },
+  "piso-pasillo-negro": {
+    "width": 900,
+    "height": 1600
+  },
+  "piso-planta-abierta": {
+    "width": 1600,
+    "height": 1200
+  },
+  "bano-blanco-negro": {
+    "width": 1040,
+    "height": 1600
+  },
+  "piso-blanco-brillo": {
+    "width": 960,
+    "height": 804
+  },
+  "piso-gran-formato": {
+    "width": 1600,
+    "height": 1200
+  },
+  "bano-oxido-2": {
+    "width": 2000,
+    "height": 2667
+  },
+  "proceso-piso": {
+    "width": 1230,
+    "height": 1600
+  },
+  "proceso-pared": {
+    "width": 2000,
+    "height": 2667
+  },
+  "proceso-cortes": {
+    "width": 900,
+    "height": 1600
+  }
+}

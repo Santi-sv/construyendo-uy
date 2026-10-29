@@ -1,0 +1,106 @@
+# ConstruYENDO · construyendo.uy
+
+Portafolio estático de ConstruYENDO Revestimientos en Maldonado. React + Vite + TypeScript + Tailwind CSS. Sin backend ni servicios de seguimiento. El preparador de presupuestos arma un mensaje localmente; el visitante lo abre, revisa y envía desde WhatsApp.
+
+Versión pública autorizada por el usuario el 29/10/2026. Sitio: https://santi-sv.github.io/construyendo-uy/ · Repositorio: https://github.com/Santi-sv/construyendo-uy.
+
+Se puede seguir trabajando localmente sin publicar cada cambio. El despliegue de GitHub Pages se ejecuta manualmente desde Actions.
+
+## Desarrollo
+
+Requiere Node.js 20.19 o superior.
+
+```sh
+npm ci
+npm run dev
+```
+
+La vista previa se sirve en http://127.0.0.1:5173. Para producción:
+
+```sh
+npm run build
+npm run preview
+```
+
+`npm run build` verifica TypeScript y genera `dist/`. Las fuentes se sirven desde el propio sitio; no hay solicitudes a Google Fonts.
+
+## Fotos y descripciones
+
+- `src/data/projects.json`: las 24 fotos de la galería. Se muestran 23 vistas principales; el detalle del piso símil madera se agrupa con su vista general para evitar repeticiones consecutivas.
+- `src/data/process.json`: las tres fotos de proceso, separadas de la galería.
+- `src/data/dimensions.json`: dimensiones generadas para reservar el espacio de cada imagen.
+- `public/images/retocadas/`: versiones WebP de 640 y hasta 2000 px (sin ampliar originales pequeños), con mayor calidad de exportación.
+- `assets/fotos-reveladas/`: maestros JPEG a resolución original, perfiles sRGB y registro de ajustes. No se suben al hosting.
+- Los JPG originales se conservan en las carpetas `Seccion …`. No se incluyen en el despliegue.
+
+Para sumar una foto: copiar el JPG a su carpeta original, agregar un registro en `projects.json` con `id`, `category`, `description` y `prefix` (prefijo único del nombre original), y ejecutar:
+
+```sh
+npm run photos:develop
+npm run images
+npm run build
+```
+
+Categorías: `banos`, `pisos`, `piscinas`, `piedra`, `escaleras`. Los filtros y sus cantidades se actualizan automáticamente. El proceso de imágenes corrige EXIF y evita ampliar originales pequeños. El duplicado `9846e967` está excluido. Las descripciones iniciales están pendientes de validación por el cliente.
+
+El revelado requiere Python con Pillow y NumPy. Los ajustes por foto están en `scripts/photo-grades.json`: exposición en luz lineal, balance de blancos conservador, recuperación leve de sombras, reducción mínima de ruido y enfoque. No se regenera contenido ni se cambia el encuadre. `assets/fotos-reveladas/manifest.json` registra los ajustes y el SHA-256 de cada original. En esta sesión el entorno de revelado se preparó en `/tmp/construyendo-photo-env`.
+
+## Contacto y visor
+
+La portada usa una imagen ilustrativa de dos trabajadores de espalda, creada por pedido explícito con la herramienta integrada `image_gen`. El maestro está en `assets/hero/interior-trabajadores-v1.png`; el prompt exacto, en `assets/hero/hero-interior.prompt.txt`; la referencia de marca, en `assets/brand/`. Está rotulada como ilustrativa y se mantiene fuera de la galería de obras reales.
+
+`node scripts/prepare-hero.mjs assets/hero/interior-trabajadores-v1.png` genera cuatro WebP para escritorio y celular, sin ampliar el original, y actualiza `src/data/hero-image.json`. La portada conserva la animación de entrada y respeta movimiento reducido.
+
+El número y los textos de WhatsApp están en `src/lib/gallery.ts`. El contacto descargable está en `public/contacto.vcf`.
+
+El cierre de contacto ofrece dos acciones: «Escribir por WhatsApp» y «Llamar por teléfono» (`tel:`), sin mostrar el número ni nombres personales. Se retiraron el número visible, su botón de copia y el WhatsApp duplicado junto a la foto. `ContactSection.tsx` concentra este bloque; `phoneUrl` y `whatsappUrl` comparten el mismo número de contacto.
+
+`ContactActions.tsx` adapta la referencia 35 de Andrew Millen: al pulsar, el botón se convierte en una línea, después en un círculo y dibuja un check. Es una respuesta al clic, sin afirmar que se haya enviado un mensaje o realizado una llamada. La opción elegida se abre a los 1,25 segundos; ambos controles bloquean activaciones repetidas durante la secuencia y se restauran al volver o tras 2,5 segundos. El check tiene su propio tamaño y margen cero para que no herede el desplazamiento de las flechas de otros botones; el dibujo queda centrado en el círculo. Los clics modificados conservan el comportamiento nativo. Si se bloquea la nueva pestaña de WhatsApp, se usa la misma pestaña; las llamadas usan `tel:`. Movimiento reducido omite la espera y la animación.
+
+El filtro elegido se recuerda en almacenamiento local; si el navegador lo bloquea, la galería sigue funcionando. El visor usa un diálogo nativo con foco confinado, restaura el foco al cerrarse, admite Esc y flechas, deslizamiento táctil y botones anterior/siguiente. El mensaje de «Quiero algo así» incluye la descripción y el tipo de obra.
+
+`PortfolioExplorer.tsx` presenta las seis categorías en un bloque azul con tarjetas de iconos y cantidades grandes. La selección se destaca en naranja y se anuncia en una barra de resultados, junto a los controles para recorrer o ver la grilla. Se muestran todas las categorías también en celular, sin desplazamiento horizontal. `portfolio-explorer.css` controla este acceso principal al portafolio y respeta movimiento reducido.
+
+Las tomas complementarias se agrupan con `detailIds` en la vista principal y `detailOf` en el detalle. El detalle se conserva en el visor ampliado y no se repite como tarjeta de la galería. La insignia «2 fotos» indica que hay más de una toma disponible. Las secciones auxiliares eligen fotos por ID para mantener su selección cuando cambia la galería.
+
+Los carruseles admiten deslizamiento táctil, arrastre con mouse, flechas, Home/End y pausa. Avanzan automáticamente solo mientras están visibles; se pausan al manejarlos, al enfocar sus controles o al ocultar la pestaña. El avance asociado al scroll se usa en proceso, metodología y exteriores. Se respeta `prefers-reduced-motion`.
+
+## Pedido de presupuesto
+
+`PaymentPanel.tsx` presenta efectivo y transferencia como dos tarjetas informativas, con iconos propios. El bloque «Tu obra. Cuentas claras.» destaca los tres puntos a acordar en el presupuesto: importe, forma de pago y plazos. Conserva el acceso al preparador y su animación «Next». No incorpora medios de pago ni condiciones comerciales adicionales. `payment-panel.css` contiene su diseño adaptable.
+
+`src/lib/quotes.ts` concentra las zonas y el texto del pedido. Visita y presupuesto sin cargo **solo en la ciudad de Maldonado y Punta del Este**. Las demás zonas tienen costo según ubicación. No hay precios inventados: el mensaje solicita consultar el importe antes de coordinar.
+
+El preparador pide trabajo y zona, admite una ubicación personalizada y detalles opcionales, y muestra el mensaje antes de abrir WhatsApp. No envía nada por su cuenta. `npm test` verifica las dos zonas sin cargo, el resto de las ubicaciones y la codificación del mensaje.
+
+La vista previa presenta dos tarjetas editables para trabajo y ubicación, un indicador circular de avance y una guía para completar el siguiente dato pendiente. Sin datos muestra un estado inicial útil; desde el primer dato aparece el borrador real y, al completar ambos, queda disponible «Copiar». El mensaje no contiene campos entre corchetes. Si el navegador bloquea el portapapeles, selecciona el texto para copiarlo manualmente. La política de visita se distingue debajo del mensaje, con el costo que corresponde a la zona. En escritorio, los mensajes largos se pueden desplazar dentro de la tarjeta; en celular, el contenido fluye con la página.
+
+Los botones incorporan tres adaptaciones CSS propias de las referencias elegidas de BrasilCode: halo circular en el CTA del hero, burbujas al interactuar con WhatsApp y partículas en «Guardar contacto». No requieren librerías de animación, tienen respuesta de foco y pulsación, y respetan movimiento reducido. El halo de entrada y los efectos de partículas tienen duración limitada.
+
+El efecto «Next», inspirado en el ejemplo de Imran Pardes incluido en la misma referencia, se aplica a «Hablemos», «Conversemos sobre tu obra», la flecha de «Coordinemos una visita» y «Preparar pedido de presupuesto». `NextArrow.tsx` dibuja tres chevrones propios; `next-buttons.css` controla la base inclinada, la sombra y el despliegue con color secuencial al pasar el cursor o enfocar. El ancho reservado evita que se mueva el contenido y la preferencia de movimiento reducido muestra las tres flechas estáticas. Se conservan los destinos y textos originales.
+
+`gradient-buttons.css` adapta el borde con gradiente animado del ejemplo 24 de Alexander Bodin a los dos controles circulares elegidos: WhatsApp flotante y la flecha de consulta por zonas. Los trazos recorren el perímetro; WhatsApp conserva su verde y símbolo blanco, y la consulta usa azul y naranja. El fondo incorpora la división diagonal del ejemplo. En movimiento reducido, el borde queda estático.
+
+El SVG de WhatsApp proviene de Bootstrap Icons; su licencia está en `public/THIRD_PARTY_NOTICES.txt`.
+
+## Iconografía propia
+
+`src/components/Icons.tsx` contiene 31 dibujos SVG creados para ConstruYENDO: geometría de placas, encuentros y cuñas, con trazos coherentes y acentos de marca. Se usan en categorías, beneficios, metodología, nivelación, pagos y controles. WhatsApp conserva su símbolo reconocible. `src/iconography.css` adapta tamaño y color al contexto.
+
+`assets/brand/iconos-construyendo/` conserva los SVG independientes, el inventario `manifest.json` y una lámina de presentación en `lamina.svg`. Estos archivos maestros no se cargan por separado en la web: los iconos se renderizan en línea desde React y permanecen nítidos en cualquier resolución.
+
+## Publicación en GitHub Pages
+
+El repositorio público contiene el código y las imágenes optimizadas necesarias. Las carpetas `Seccion …`, los maestros de `assets/`, las capturas de `.qa/` y las variables de entorno se conservan localmente y quedan excluidas de Git.
+
+El workflow `.github/workflows/pages.yml` instala dependencias, ejecuta las pruebas, compila con la base `/construyendo-uy/` y publica `dist/`. No se ejecuta al guardar ni al hacer push: para publicar una revisión, abrir **Actions → Publicar ConstruYENDO en GitHub Pages → Run workflow**, después de que el usuario lo solicite.
+
+Para comprobar localmente la misma compilación:
+
+```sh
+npm test
+npm run build -- --base=/construyendo-uy/
+npm run preview -- --base=/construyendo-uy/
+```
+
+Las rutas de las fotos, el hero y el contacto descargable usan `import.meta.env.BASE_URL`; los enlaces entre secciones usan anclas. Los metadatos y el sitemap corresponden a la dirección pública de GitHub Pages. No se ha vinculado un dominio propio. La configuración de Vercel se conserva para una futura migración autorizada por el usuario.

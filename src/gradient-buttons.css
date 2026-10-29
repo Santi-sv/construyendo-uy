@@ -1,0 +1,23 @@
+/* El borde del ejemplo 24 de Alexander Bodin se adapta a un recorrido circular. */
+.gradient-orbit{position:relative;isolation:isolate;--trace-color:#f2a05e;--trace-color-soft:#28445f}
+.gradient-orbit:after{content:'';position:absolute;inset:-3px;padding:2px;border-radius:inherit;background:conic-gradient(from 0deg,transparent 0deg 50deg,var(--trace-color-soft) 95deg,var(--trace-color) 158deg,transparent 162deg 230deg,var(--trace-color-soft) 275deg,var(--trace-color) 338deg,transparent 342deg);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:brand-gradient-orbit 4.4s linear infinite;pointer-events:none;z-index:2}
+.floating-whatsapp.gradient-orbit{position:fixed;--trace-color:#f4fff4;--trace-color-soft:#a2efb8;background:linear-gradient(-30deg,#25d366 50%,#20bf5d 50%);border:1px solid #ffffff6b;box-shadow:0 6px 24px #0c6f3c42}
+.floating-whatsapp.gradient-orbit>.whatsapp-brand-icon{position:relative;z-index:1;color:#fff}
+.floating-whatsapp.gradient-orbit:focus-visible{outline:2px solid #195b39;outline-offset:8px}
+.floating-whatsapp.gradient-orbit:focus-visible:after{animation-duration:1.8s}
+.coverage-link-arrow.gradient-orbit{width:42px;height:42px;color:#fff7ed;background:linear-gradient(-30deg,#203b56 50%,#172b43 50%);border:1px solid #294561;transition:box-shadow .25s}
+.coverage-link-arrow.gradient-orbit>svg{position:relative;z-index:1;transition:transform .25s}
+.coverage-outside:hover .coverage-link-arrow.gradient-orbit{background:linear-gradient(-30deg,#203b56 50%,#172b43 50%);color:#fff7ed;transform:none;box-shadow:0 4px 15px #172b4320}
+.coverage-outside:focus-visible .gradient-orbit:after{animation-duration:1.8s}
+@keyframes brand-gradient-orbit{to{transform:rotate(360deg)}}
+@media(hover:hover){
+  .floating-whatsapp.gradient-orbit:hover{background:linear-gradient(-30deg,#29dc6d 50%,#22c660 50%);box-shadow:0 8px 28px #0c6f3c55}
+  .floating-whatsapp.gradient-orbit:hover:after,.coverage-outside:hover .gradient-orbit:after{animation-duration:1.8s}
+  .coverage-outside:hover .coverage-link-arrow.gradient-orbit>svg{transform:translateX(2px)}
+}
+@media(max-width:767px){.coverage-link-arrow.gradient-orbit{width:39px;height:39px}}
+@media(prefers-reduced-motion:reduce){
+  .gradient-orbit:after{animation:none!important;transform:rotate(30deg)}
+  .coverage-link-arrow.gradient-orbit,.coverage-link-arrow.gradient-orbit>svg{transition:none}
+  .coverage-outside:hover .coverage-link-arrow.gradient-orbit>svg{transform:none}
+}

@@ -1,0 +1,5 @@
+[
+  { "id": "proceso-piso", "description": "Nivelación en piso", "prefix": "4eea21c3" },
+  { "id": "proceso-pared", "description": "Nivelación en pared", "prefix": "1a2b69e2" },
+  { "id": "proceso-cortes", "description": "Cortes a medida", "prefix": "73e5db53" }
+]

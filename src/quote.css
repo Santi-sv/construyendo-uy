@@ -1,0 +1,64 @@
+.quote-section{background:#fbfaf6;border-top:1px solid #dce2e7}
+.quote-section .section-heading{align-items:flex-end;margin-bottom:45px}
+.quote-section h2{font-size:69px;line-height:.96}
+.quote-layout{display:grid;grid-template-columns:1fr .95fr;gap:75px;align-items:start}
+.quote-field{margin-bottom:27px;min-width:0}
+.quote-field>label{display:flex;align-items:center;gap:10px;color:var(--navy);font-size:12px;font-weight:650;line-height:1.7;margin-bottom:11px}
+.quote-field>label>span{font-family:var(--display);font-size:22px;font-weight:700;color:#ae5a1e;line-height:1}
+.quote-field>label>small{font-size:6px;letter-spacing:1.2px;font-weight:500;color:#8d9baa;margin-left:auto}
+.quote-select-wrap{position:relative}
+.quote-select-wrap>svg{position:absolute;right:16px;top:19px;transform:rotate(90deg);pointer-events:none;color:#7a8c9f}
+.quote-form select,.quote-form input,.quote-form textarea{font:inherit;font-size:12px;line-height:1.7;color:var(--navy);background:#fff;border:1px solid #cbd5de;border-radius:3px;width:100%;padding:14px 17px;transition:border-color .2s,box-shadow .2s}
+.quote-form select{appearance:none;min-height:55px;padding-right:45px;cursor:pointer}
+.quote-form select:invalid{color:#8393a4}
+.quote-form textarea{resize:vertical;min-height:113px}
+.quote-form ::placeholder{color:#96a2ae}
+.quote-form select:focus,.quote-form input:focus,.quote-form textarea:focus{border-color:#ac591e;box-shadow:0 0 0 3px #f28a3d12;outline:2px solid transparent;outline-offset:3px}
+.quote-form select:focus-visible,.quote-form input:focus-visible,.quote-form textarea:focus-visible{outline:2px solid #ac591e;outline-offset:3px}
+.quote-other-zone{margin-top:14px}
+.quote-other-zone label{display:block;font-size:10px;color:#6c8094;margin-bottom:7px}
+.quote-fee-note{display:flex;align-items:flex-start;gap:9px;margin-top:12px;background:#edf0f3;border-left:2px solid #c2ced9;padding:12px 13px;border-radius:0 3px 3px 0;color:#708496}
+.quote-fee-note>svg{flex-shrink:0;margin-top:2px}
+.quote-fee-note p{font-size:9px;line-height:1.9;color:#6d8093}
+.quote-fee-note strong{display:block;font-weight:650;color:#354f67}
+.quote-fee-note--free{border-left-color:#6b8a65;background:#eef4ec;color:#647e5a}
+.quote-fee-note--paid{border-left-color:var(--orange);background:#fff0e3;color:#a45923}
+.quote-character-count{display:block;text-align:right;color:#92a1af;font-size:8px;margin-top:7px;font-variant-numeric:tabular-nums}
+.quote-send-button{width:100%;background:#1c6b45;color:#fff;justify-content:flex-start;gap:12px;min-height:58px;border-radius:3px;font-size:12px;font-weight:650;padding-inline:20px}
+.quote-send-button>svg:last-child{margin-left:auto!important}
+.quote-send-button:hover{background:#145335;box-shadow:0 5px 20px #1c6b451c}
+.quote-submit-note{text-align:center;font-size:9px;line-height:1.9;color:#8a99a6;margin-top:12px}
+.quote-preview{border:1px solid #ccd7d9;border-radius:8px;overflow:hidden;box-shadow:0 12px 45px #182f4310;position:sticky;top:calc(var(--header-height) + 27px);background:#eef0e9}
+.quote-preview-header{display:flex;align-items:center;gap:11px;background:#172b43;padding:20px 22px;color:white}
+.quote-business-avatar{display:grid;place-items:center;width:39px;height:39px;border-radius:50%;background:#ffffff10;color:var(--orange-light);border:1px solid #ffffff25}
+.quote-business-avatar>svg{width:26px;height:29px}
+.quote-preview-header strong{font-size:12px;font-weight:650;display:block}
+.quote-preview-header>div>span{font-size:6px;letter-spacing:2px;color:#a6b9ca;margin-top:3px;display:block}
+.quote-draft-badge{font-size:6px;letter-spacing:1.2px;line-height:1.7;border:1px solid #ffffff35;border-radius:20px;color:#d2dde5;padding:5px 8px;margin-left:auto}
+.quote-preview-body{padding:28px 23px 27px;position:relative;background-image:radial-gradient(#829e8926 .6px,transparent .6px);background-size:14px 14px}
+.quote-preview-date{display:table;margin:0 auto 24px;font-size:7px;letter-spacing:1px;line-height:1.8;color:#7a897f;background:#f9faf5d9;padding:5px 11px;border-radius:3px}
+.quote-message-bubble{position:relative;border-radius:6px 0 6px 6px;margin-left:14px;padding:21px 18px 28px;background:#fff;box-shadow:0 2px 4px #3852490b;color:#3d514a;border:1px solid #d9e2d9;transition:background .3s,border-color .3s}
+.quote-message-bubble:after{content:'';position:absolute;right:-7px;top:-1px;width:0;height:0;border-top:9px solid #d9e2d9;border-right:8px solid transparent}
+.quote-message-bubble.is-ready{background:#e7f1df;border-color:#d4e4c8}
+.quote-message-bubble.is-ready:after{border-top-color:#d4e4c8}
+.quote-message-bubble>p{white-space:pre-wrap;font-size:12px;line-height:1.9;overflow-wrap:anywhere}
+.quote-message-bubble>span{position:absolute;right:13px;bottom:10px;display:flex;color:#75a092}
+.quote-message-bubble>span>svg+svg{margin-left:-9px}
+.quote-preview-hint{font-size:9px;color:#859286;text-align:center;line-height:1.9;max-width:270px;margin:23px auto 0}
+.quote-preview-footer{display:flex;align-items:center;gap:13px;border-top:1px solid #d4ddd5;padding:17px 20px;background:#f6f7f0;color:#7a8d70}
+.quote-preview-footer>svg{flex-shrink:0}
+.quote-preview-footer p{font-size:8px;line-height:1.8;color:#7e8c7b}
+.quote-preview-footer strong{font-weight:600;color:#51664b;display:block}
+.cinema-fee-note{font-size:8px;line-height:1.9;max-width:410px;color:#b4c5d5;margin-top:14px}
+.coverage-locations>span{flex-wrap:wrap;row-gap:0;padding-block:9px}
+.coverage-zone-status{display:block;font-size:6px;letter-spacing:.2px;color:#7b8d9e;margin-left:auto}
+.coverage-zone-status--free{color:#5a7b51}
+.coverage-visit strong{font-size:10px;line-height:1.8}
+.coverage-visit p{font-size:10px;color:#526d4b}
+.coverage-transport{font-size:10px;line-height:1.95}
+.contact-visit-note{line-height:1.9;text-align:center;max-width:330px}
+
+@media(max-width:1100px) and (min-width:768px){.quote-layout{gap:40px}.quote-section h2{font-size:60px}.quote-preview-header{padding:18px 17px}.quote-preview-body{padding:25px 18px}.quote-message-bubble{margin-left:5px;padding-inline:15px}.quote-message-bubble>p{font-size:11px}.quote-draft-badge{font-size:5px;padding:5px 6px;letter-spacing:.8px}.coverage-zone-status{font-size:5px;letter-spacing:0}.cinema-fee-note{font-size:7px;max-width:340px}}
+@media(max-width:767px){.quote-section .section-heading{margin-bottom:29px}.quote-section h2{font-size:48px;line-height:.96}.quote-section .section-heading>p{font-size:12px;margin-top:18px}.quote-layout{grid-template-columns:1fr;gap:32px}.quote-field{margin-bottom:24px}.quote-field>label{font-size:12px;gap:9px;line-height:1.7;margin-bottom:10px}.quote-field>label>span{font-size:23px}.quote-field>label>small{font-size:5px;letter-spacing:.8px}.quote-form select,.quote-form input,.quote-form textarea{font-size:16px;padding:13px 14px;line-height:1.6}.quote-form select{min-height:54px;padding-right:40px}.quote-form textarea{font-size:13px;min-height:119px}.quote-select-wrap>svg{right:15px;top:18px}.quote-fee-note{padding:12px 11px;gap:8px}.quote-fee-note p{font-size:10px;line-height:1.9}.quote-fee-note>svg{width:16px;margin-top:3px}.quote-other-zone label{font-size:10px}.quote-character-count{font-size:8px}.quote-send-button{min-height:57px;font-size:11px;padding-inline:17px;gap:10px}.quote-send-button>svg:first-child{width:21px}.quote-submit-note{font-size:9px;line-height:1.9}.quote-preview{position:relative;top:auto;border-radius:6px}.quote-preview-header{padding:18px 17px;gap:10px}.quote-business-avatar{width:35px;height:35px}.quote-business-avatar>svg{width:23px;height:27px}.quote-preview-header strong{font-size:11px}.quote-preview-header>div>span{font-size:5px;letter-spacing:1.7px}.quote-draft-badge{font-size:5px;letter-spacing:.7px;padding:5px 7px}.quote-preview-body{padding:24px 18px 23px}.quote-message-bubble{margin-left:5px;padding:18px 16px 27px}.quote-message-bubble>p{font-size:12px;line-height:1.9}.quote-preview-hint{font-size:9px;margin-top:20px}.quote-preview-footer{padding:16px 18px;gap:11px}.quote-preview-footer p{font-size:9px;line-height:1.85}.quote-preview-date{margin-bottom:20px;font-size:6px}.cinema-fee-note{font-size:8px;color:#a3b9cc;margin-top:13px;line-height:1.85;max-width:310px}.coverage-locations{grid-template-columns:1fr}.coverage-locations>span{min-height:40px;flex-wrap:nowrap;font-size:11px}.coverage-zone-status{font-size:7px;letter-spacing:.1px}.coverage-locations>.coverage-all{font-size:10px}.coverage-visit strong{font-size:10px;line-height:1.85}.coverage-visit p{font-size:10px}.coverage-transport{font-size:10px;line-height:1.95}.contact-visit-note{font-size:9px;max-width:290px}.benefit span{max-width:260px;line-height:1.8}}
+@media(max-width:767px){.quote-form textarea{font-size:16px}}
+@media(max-width:359px){.quote-section h2{font-size:43px}.quote-field>label{font-size:11px;gap:8px}.quote-field>label>small{font-size:5px}.quote-send-button{font-size:10px;padding-inline:14px}.quote-draft-badge{font-size:5px;letter-spacing:.4px;padding:5px}.quote-preview-header{padding-inline:14px}.quote-preview-header strong{font-size:10px}}

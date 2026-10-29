@@ -1,0 +1,63 @@
+.quote-preview--project.quote-preview--brief{background:#fffdf8;border:1px solid #d4dde0;border-top:3px solid var(--orange);border-radius:9px;box-shadow:0 15px 45px #172b430d;overflow:hidden}
+.brief-header{padding:23px 25px 24px;background:var(--navy);color:#fff}
+.brief-brand-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.brief-brand{display:flex;align-items:center;gap:9px}
+.brief-brand>svg{width:26px;height:29px;color:var(--orange-light);flex-shrink:0}
+.brief-brand>span{font-size:12px;font-weight:650;line-height:1.4}
+.brief-brand small{display:block;font-size:5px;letter-spacing:2px;color:#aebfcf;font-weight:400;margin-top:4px}
+.brief-preview-label{font-size:6px;letter-spacing:1.2px;padding:6px 8px;border:1px solid #ffffff2b;border-radius:3px;color:#b4c5d3;white-space:nowrap}
+.brief-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brief-heading h3{font-family:var(--display);font-size:37px;font-weight:700;line-height:1;text-transform:uppercase;text-wrap:initial;letter-spacing:.1px}
+.brief-heading h3>span{color:var(--orange-light)}
+.brief-status{display:block;color:#b3c5d5;font-size:9px;line-height:1.7;margin-top:12px}
+.brief-status.is-ready{color:#b4ddb9}
+.brief-progress{position:relative;width:60px;height:60px;flex-shrink:0;display:grid;place-items:center}
+.brief-progress>svg{position:absolute;inset:0;overflow:visible;transform:rotate(-90deg);fill:none;stroke-width:2.3;stroke-linecap:round}
+.brief-progress-track{stroke:#ffffff21}
+.brief-progress-value{stroke:var(--orange-light);transition:stroke-dashoffset .45s ease,stroke .3s}
+.quote-preview--brief[data-ready="true"] .brief-progress-value{stroke:#91c99c}
+.brief-progress>strong{font-size:20px;font-weight:600;color:#fff2e4;font-variant-numeric:tabular-nums;line-height:1}
+.brief-progress small{font-size:10px;color:#8fa9bf;margin-left:2px;font-weight:400}
+.brief-content{padding:21px 24px 18px}
+.brief-fields{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.brief-field{display:flex;flex-direction:column;align-items:flex-start;min-width:0;min-height:117px;text-align:left;padding:13px 13px 14px;background:#fff;border:1px solid #dce2e2;border-radius:5px;color:var(--navy);transition:border-color .2s,background .2s}
+.brief-field-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;font-size:6px;letter-spacing:1.1px;color:#7a8d9d;margin-bottom:12px;line-height:1.5}
+.brief-field-heading>svg{color:#9eafbc;width:13px;height:13px}
+.brief-field-icon{color:#a95621;--icon-accent:#cf7c3f;display:block;margin-bottom:10px}
+.brief-field>strong{font-size:12px;font-weight:600;line-height:1.6;overflow-wrap:anywhere}
+.brief-field.is-complete{background:#fff3e6;border-color:#eac7aa}
+.brief-field.is-complete .brief-field-heading{color:#986443}
+.brief-field.is-complete .brief-field-heading>svg{color:#a65b26}
+.brief-field:hover{background:#fff4e7;border-color:#cb8a59}
+.brief-field:focus-visible{outline:2px solid #a95822;outline-offset:3px}
+.brief-empty{position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:center;text-align:left;padding:20px 18px;margin-top:18px;background:#f5f3ec;border:1px dashed #d9d9cd;border-radius:5px}
+.brief-empty-heading{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+.brief-empty-icon{display:grid;place-items:center;width:40px;height:40px;color:#a45a29;--icon-accent:#d8894b;flex-shrink:0}
+.brief-empty h4{font-family:var(--display);font-size:27px;text-transform:uppercase;line-height:1.06;letter-spacing:.1px;font-weight:700;margin:0;color:var(--navy)}
+.brief-empty>p{font-size:10px;line-height:1.85;color:#7a8990;max-width:330px}
+
+
+.brief-message{margin-top:19px;border:1px solid #dce3e2;border-radius:5px;background:#fff;padding:14px 15px 0}
+.brief-message.is-ready{border-top:2px solid #7b9e79}
+.brief-message-heading{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:13px;min-height:32px}
+.brief-message-heading>span{display:flex;align-items:center;gap:7px;font-size:6px;letter-spacing:1px;color:#667e74}
+.brief-message-heading>button{display:flex;align-items:center;gap:5px;font-size:10px;background:#edf2e9;color:#476044;min-height:34px;padding:7px 9px;border-radius:3px}
+.brief-message-heading>button:hover{background:#e0ead8}
+.brief-message-scroll{max-height:250px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#c1cbbf transparent;padding-right:4px}
+.brief-message-scroll>p{white-space:pre-wrap;font-size:12px;line-height:1.85;color:#4c6165;overflow-wrap:anywhere;margin:0}
+.brief-message-scroll:focus-visible{outline:2px solid #ad6b3d;outline-offset:4px}
+.brief-message-feedback{min-height:23px;display:block;font-size:9px;line-height:1.6;color:#4f754a;padding-top:5px}
+.brief-next-step{display:flex;align-items:center;gap:7px;text-align:left;background:transparent;color:#a75927;min-height:40px;font-size:10px;line-height:1.7;padding:11px 0 0}
+.brief-visit-note{display:flex;align-items:flex-start;gap:10px;background:#f5efe6;border:1px solid #e9dfd0;border-left:2px solid #ce8b52;border-radius:3px;margin-top:18px;padding:12px 11px;color:#a35c2b}
+.brief-visit-icon{display:block;flex-shrink:0;margin-top:2px;--icon-accent:#b6642b}
+.brief-visit-note>p{font-size:9px;line-height:1.85;color:#7e898b;margin:0}
+.brief-visit-note strong{display:block;font-weight:650;color:#626d6d;margin-bottom:2px}
+.brief-visit-note p>span{display:block}
+.brief-visit-note.is-free{background:#f0f5ec;border-color:#dce6d5;border-left-color:#81a173;color:#5c7f50}
+.brief-visit-note.is-free strong{color:#516f45}
+.brief-footer{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:16px;font-size:8px;color:#8b979c;line-height:1.8;text-align:center}
+.brief-footer>.whatsapp-brand-icon{color:#7c9684;flex-shrink:0}
+@media(max-width:1100px) and (min-width:768px){.brief-header{padding:22px}.brief-content{padding:18px 20px}.brief-heading h3{font-size:33px}.brief-field{padding-inline:10px}.brief-field>strong{font-size:11px}.brief-message{padding-inline:12px}.brief-message-scroll>p{font-size:11px}.brief-message-heading>span{font-size:5px;letter-spacing:.6px}.brief-message-heading>span>.whatsapp-brand-icon{width:14px}.brief-message-heading>button{font-size:9px;padding-inline:7px}}
+@media(max-width:767px){.brief-header{padding:22px}.brief-brand-row{margin-bottom:22px}.brief-heading h3{font-size:35px}.brief-brand>span{font-size:12px}.brief-brand small{font-size:5px}.brief-status{font-size:10px}.brief-content{padding:20px 20px 18px}.brief-fields{gap:10px}.brief-field{padding:12px;min-height:119px}.brief-field-heading{font-size:6px;letter-spacing:.9px}.brief-field>strong{font-size:12px}.brief-empty{padding:22px 15px}.brief-empty h4{font-size:29px}.brief-empty>p{font-size:11px;line-height:1.8}.brief-message{padding-inline:13px}.brief-message-heading{gap:7px}.brief-message-heading>span{font-size:6px;letter-spacing:.6px;gap:5px}.brief-message-heading>button{min-height:44px;font-size:10px}.brief-message-scroll{max-height:none;padding-right:0}.brief-message-scroll>p{font-size:13px;line-height:1.85}.brief-message-feedback{font-size:10px;min-height:25px}.brief-visit-note{padding:12px 11px;gap:9px}.brief-visit-note>p{font-size:10px;line-height:1.85}.brief-next-step{font-size:11px;min-height:44px}.brief-footer{font-size:9px;line-height:1.8}}
+@media(max-width:359px){.brief-header{padding-inline:18px}.brief-content{padding-inline:16px}.brief-heading h3{font-size:31px}.brief-preview-label{font-size:5px;letter-spacing:.7px}.brief-field{padding-inline:10px}.brief-field-heading{font-size:5px;letter-spacing:.6px}.brief-field>strong{font-size:11px}.brief-message-heading>span{font-size:5px;letter-spacing:.3px}.brief-message-heading>button{font-size:9px;padding-inline:7px}.brief-message-heading>span>.whatsapp-brand-icon{width:14px}}
+@media(prefers-reduced-motion:reduce){.brief-progress-value,.brief-field{transition:none}}

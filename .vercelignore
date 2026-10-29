@@ -1,0 +1,9 @@
+node_modules
+.git
+.qa
+Seccion*
+scripts
+assets
+README.md
+.DS_Store
+*.tsbuildinfo
