@@ -18,7 +18,7 @@ const steps = [
   { title: 'Nos escribís', text: 'Contanos por WhatsApp qué querés revestir y en qué zona. Si tenés fotos del lugar, mandalas.' },
   { title: 'Vamos a ver el trabajo', text: 'Cada obra es distinta, por eso el presupuesto siempre se hace en el lugar. La visita y el presupuesto son sin cargo en la ciudad de Maldonado y Punta del Este. En las demás zonas tienen costo según la ubicación.' },
   { title: 'Te pasamos el presupuesto', text: 'Con el trabajo a la vista acordamos el precio, la forma de pago y los plazos.' },
-  { title: 'Obra llave en mano', text: 'Vos nos abrís la puerta y nosotros nos encargamos del resto, de la preparación a la última junta.' },
+  { title: 'Colocamos el revestimiento', text: 'Trabajamos en la preparación, colocación y terminación del revestimiento, cuidando cada detalle.' },
 ]
 const processProjects: Project[] = processPhotos.map((photo, index) => ({ ...photo, category: index === 1 ? 'banos' : index === 2 ? 'escaleras' : 'pisos' }))
 const projectById = (id: string) => projects.find((photo) => photo.id === id)!
@@ -97,7 +97,7 @@ function App() {
         <div className="benefits-wrap"><div className="benefits container">
           <div className="benefit" data-reveal="up"><span className="benefit-icon"><Icon name="visit" size={30} /></span><div><strong>Presupuesto en tu obra</strong><span>Sin cargo en Maldonado ciudad y Punta del Este.</span></div></div>
           <div className="benefit" data-reveal="up"><span className="benefit-icon"><Icon name="money" size={30} /></span><div><strong>Efectivo o transferencia</strong><span>Lo coordinamos con vos.</span></div></div>
-          <div className="benefit" data-reveal="up"><span className="benefit-icon"><Icon name="key" size={30} /></span><div><strong>Trabajo llave en mano</strong><span>De la preparación a la terminación.</span></div></div>
+          <div className="benefit" data-reveal="up"><span className="benefit-icon"><Icon name="tile" size={30} /></span><div><strong>Colocación y terminaciones</strong><span>Cuidado en cada detalle.</span></div></div>
         </div></div>
 
         <section id="trabajos" className="work-section section-space container">
