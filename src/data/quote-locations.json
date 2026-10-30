@@ -1,0 +1,52 @@
+{
+  "maldonado-ciudad": {
+    "file": "maldonado-ciudad.webp",
+    "position": "center 42%",
+    "source": "https://commons.wikimedia.org/wiki/File:Vista_posterior_de_la_Iglesia_Catedral_de_San_Fernando_de_Maldonado.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "punta-del-este": {
+    "file": "punta-del-este.webp",
+    "position": "center 52%",
+    "source": "https://commons.wikimedia.org/wiki/File:Vista_de_Punta_Del_Este,_desde_el_Faro_de_Punta_del_Este.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "punta-ballena": {
+    "file": "punta-ballena.webp",
+    "position": "center 60%",
+    "source": "https://commons.wikimedia.org/wiki/File:Punta_Ballena,_Uruguay_(50127615111).jpg",
+    "license": "Dominio público",
+    "licenseUrl": "https://commons.wikimedia.org/wiki/File:Punta_Ballena,_Uruguay_(50127615111).jpg"
+  },
+  "pan-de-azucar": {
+    "file": "pan-de-azucar.webp",
+    "position": "center 65%",
+    "source": "https://commons.wikimedia.org/wiki/File:AccesoPanDeAzucar.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "piriapolis": {
+    "file": "piriapolis.webp",
+    "position": "center 46%",
+    "source": "https://commons.wikimedia.org/wiki/File:Piriapolis.JPG",
+    "license": "Dominio público",
+    "licenseUrl": "https://commons.wikimedia.org/wiki/File:Piriapolis.JPG"
+  },
+  "jose-ignacio": {
+    "file": "jose-ignacio.webp",
+    "position": "left 50%",
+    "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Jos%C3%A9_Ignacio.JPG",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "la-capuera": {
+    "file": "la-capuera.webp",
+    "position": "center 53%",
+    "source": "https://commons.wikimedia.org/wiki/File:Laguna_del_sauce_2.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "caption": "Entorno: Laguna del Sauce"
+  }
+}

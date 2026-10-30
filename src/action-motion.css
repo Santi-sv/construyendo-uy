@@ -59,7 +59,7 @@
 .brief-message-heading>button:is(:hover,:focus-visible){transform:translateY(-2px);box-shadow:0 4px 9px #275f9e15}
 .brief-message-heading>button:active{transform:scale(.96)}
 .brief-next-step:is(:hover,:focus-visible)>svg{animation:cta-arrow-travel .65s ease 2}
-.brief-field:is(:hover,:focus-visible) .brief-field-icon{transform:translateY(-2px)}
+.brief-field:is(:hover,:focus-visible) .brief-field-icon{transform:scale(1.06)}
 .brief-field-icon{transition:transform .25s}
 .footer-domain:is(:hover,:focus-visible)>svg{animation:cta-arrow-travel .65s ease 2}
 

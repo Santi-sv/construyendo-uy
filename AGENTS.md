@@ -18,3 +18,4 @@
 - El encabezado incluye navegación agrupada en escritorio y menú desplegable en celular; conservar la marca solo con letras.
 - El fondo de cobertura debe ser un plano urbano discreto de la ciudad de Maldonado que ocupe toda la tarjeta, no una silueta de Uruguay. Usar un recurso estático liviano con atribución de OpenStreetMap.
 - La marca tipográfica debe reproducir el tratamiento de la remera: Constru claro, Yendo en dorado cálido con profundidad, grosor marcado, línea inferior, rubro y lema; sin el símbolo de placas.
+- Por pedido del usuario del 30/10/2026, las tarjetas del pedido muestran fondos según el trabajo y la localidad elegidos. Usar fotos reales de obras para trabajos; las fotos de localidades van separadas de la galería, con fuente y licencia. «Otra zona» no debe mostrar una localidad incorrecta. La Capuera usa una vista del entorno de la Laguna del Sauce, identificada como tal.

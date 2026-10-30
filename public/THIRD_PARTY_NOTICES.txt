@@ -28,3 +28,56 @@ Datos © colaboradores de OpenStreetMap, disponibles bajo ODbL 1.0.
 https://www.openstreetmap.org/copyright
 https://opendatacommons.org/licenses/odbl/1-0/
 Plano SVG estático producido a partir de datos públicos; no utiliza teselas ni servicios externos al visitar el sitio.
+
+
+FOTOGRAFÍAS DE LOCALIDADES EN EL PREPARADOR DE PRESUPUESTOS
+
+Estas fotografías representan las localidades y no son obras de ConstruYENDO.
+Se han redimensionado, convertido a WebP y recortado para las tarjetas.
+Los enlaces de fuente incluyen la identificación de autoría y los créditos
+completos. La atribución se ofrece mediante estos enlaces de acuerdo con
+la sección 3(a)(2) de las licencias CC 4.0. Cada fotografía adaptada bajo
+CC BY-SA 4.0 conserva esa licencia. Las licencias de las imágenes no se
+extienden al resto del sitio.
+
+maldonado-ciudad
+Fuente y créditos: https://commons.wikimedia.org/wiki/File:Vista_posterior_de_la_Iglesia_Catedral_de_San_Fernando_de_Maldonado.jpg
+Licencia: CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0
+Archivo adaptado: images/localidades/maldonado-ciudad.webp
+
+punta-del-este
+Fuente y créditos: https://commons.wikimedia.org/wiki/File:Vista_de_Punta_Del_Este,_desde_el_Faro_de_Punta_del_Este.jpg
+Licencia: CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0
+Archivo adaptado: images/localidades/punta-del-este.webp
+
+punta-ballena
+Fuente y créditos: https://commons.wikimedia.org/wiki/File:Punta_Ballena,_Uruguay_(50127615111).jpg
+Licencia: Dominio público
+https://commons.wikimedia.org/wiki/File:Punta_Ballena,_Uruguay_(50127615111).jpg
+Archivo adaptado: images/localidades/punta-ballena.webp
+
+pan-de-azucar
+Fuente y créditos: https://commons.wikimedia.org/wiki/File:AccesoPanDeAzucar.jpg
+Licencia: CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0
+Archivo adaptado: images/localidades/pan-de-azucar.webp
+
+piriapolis
+Fuente y créditos: https://commons.wikimedia.org/wiki/File:Piriapolis.JPG
+Licencia: Dominio público
+https://commons.wikimedia.org/wiki/File:Piriapolis.JPG
+Archivo adaptado: images/localidades/piriapolis.webp
+
+jose-ignacio
+Fuente y créditos: https://commons.wikimedia.org/wiki/File:Playa_de_Jos%C3%A9_Ignacio.JPG
+Licencia: CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0
+Archivo adaptado: images/localidades/jose-ignacio.webp
+
+la-capuera (Entorno: Laguna del Sauce)
+Fuente y créditos: https://commons.wikimedia.org/wiki/File:Laguna_del_sauce_2.jpg
+Licencia: CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0
+Archivo adaptado: images/localidades/la-capuera.webp

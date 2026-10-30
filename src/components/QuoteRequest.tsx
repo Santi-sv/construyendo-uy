@@ -33,7 +33,7 @@ export function QuoteRequest() {
           <p className="quote-submit-note">Vas a poder revisar el mensaje y enviarlo desde WhatsApp.</p>
         </form>
 
-        <QuotePreview service={service} location={location} freeVisit={!!zone?.free} zoneChosen={!!zone} ready={ready} message={message} />
+        <QuotePreview service={service} zoneId={zoneId} location={location} freeVisit={!!zone?.free} zoneChosen={!!zone} ready={ready} message={message} />
       </div>
     </div>
   </section>

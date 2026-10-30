@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { Brand, Icon } from './Icons'
-import type { IconName } from './Icons'
 import { freeVisitPolicy } from '../lib/quotes'
-
-const serviceIcons: Record<string, IconName> = { 'Baño': 'bath', 'Piso': 'tile', 'Piscina': 'pool', 'Piedra librillo': 'stone', 'Escalera': 'stairs', 'Fachada': 'facade', 'Otro revestimiento': 'ruler' }
+import { locationPhoto, servicePhoto } from '../lib/quoteVisuals'
+import { QuotePhotoBackground } from './QuotePhotoBackground'
+import { QuoteCardIcon } from './QuoteCardIcon'
 
 type Props = {
   service: string
+  zoneId: string
   location: string
   freeVisit: boolean
   zoneChosen: boolean
@@ -14,11 +15,13 @@ type Props = {
   message: string
 }
 
-export function QuotePreview({ service, location, freeVisit, zoneChosen, ready, message }: Props) {
+export function QuotePreview({ service, zoneId, location, freeVisit, zoneChosen, ready, message }: Props) {
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle')
   const messageRef = useRef<HTMLParagraphElement>(null)
   const completed = Number(!!service) + Number(!!location)
   const hasDraft = !!service || !!location
+  const workPhoto = servicePhoto(service)
+  const placePhoto = locationPhoto(zoneId)
   const nextField = !service ? 'quote-service' : zoneChosen ? 'quote-other-location' : 'quote-zone'
   const nextPrompt = !service ? 'Elegí el tipo de trabajo.' : zoneChosen ? 'Completá la localidad de tu obra.' : 'Elegí dónde está tu obra.'
 
@@ -52,9 +55,19 @@ export function QuotePreview({ service, location, freeVisit, zoneChosen, ready, 
 
     <div className="brief-content">
       <div className="brief-fields">
-        <button type="button" className={`brief-field brief-field--service ${service ? 'is-complete' : ''}`} onClick={() => editField('quote-service')} aria-label="Editar tipo de trabajo"><span className="brief-field-heading">01 / TRABAJO<Icon name={service ? 'check' : 'chevron-right'} size={14} /></span><span className="brief-field-icon"><Icon name={serviceIcons[service] || 'ruler'} size={28} /></span><strong>{service || 'Elegí el trabajo'}</strong></button>
-        <button type="button" className={`brief-field brief-field--location ${location ? 'is-complete' : ''}`} onClick={() => editField(zoneChosen && !location ? 'quote-other-location' : 'quote-zone')} aria-label="Editar ubicación de la obra"><span className="brief-field-heading">02 / UBICACIÓN<Icon name={location ? 'check' : 'chevron-right'} size={14} /></span><span className="brief-field-icon"><Icon name="location" size={28} /></span><strong>{location || 'Elegí la zona'}</strong></button>
+        <button type="button" className={`brief-field brief-field--service ${service ? 'is-complete' : ''} ${workPhoto ? 'brief-field--photo' : ''}`} onClick={() => editField('quote-service')} aria-label="Editar tipo de trabajo">
+          {workPhoto && <QuotePhotoBackground key={workPhoto.src} photo={workPhoto} />}
+          <span className="brief-field-heading">01 / TRABAJO<Icon name={service ? 'check' : 'chevron-right'} size={14} /></span>
+          <span className="brief-field-label"><span className="brief-field-icon"><QuoteCardIcon kind={service} /></span><span className="brief-field-copy"><strong>{service || 'Elegí el trabajo'}</strong></span></span>
+        </button>
+        <button type="button" className={`brief-field brief-field--location ${location ? 'is-complete' : ''} ${placePhoto ? 'brief-field--photo' : ''}`} onClick={() => editField(zoneChosen && !location ? 'quote-other-location' : 'quote-zone')} aria-label="Editar ubicación de la obra">
+          {placePhoto && <QuotePhotoBackground key={placePhoto.src} photo={placePhoto} />}
+          <span className="brief-field-heading">02 / UBICACIÓN<Icon name={location ? 'check' : 'chevron-right'} size={14} /></span>
+          <span className="brief-field-label"><span className="brief-field-icon"><QuoteCardIcon kind="location" /></span><span className="brief-field-copy"><strong>{location || 'Elegí la zona'}</strong>{placePhoto?.caption && <small className="brief-field-caption">{placePhoto.caption}</small>}</span></span>
+        </button>
       </div>
+
+      {placePhoto && <p className="brief-image-source"><span>Foto de localidad:</span><a href={placePhoto.source} target="_blank" rel="noopener noreferrer">Wikimedia Commons</a><span>·</span><a href={placePhoto.licenseUrl} target="_blank" rel="noopener noreferrer">{placePhoto.license}</a><span>· adaptada</span></p>}
 
       {hasDraft ? <div className={`brief-message ${ready ? 'is-ready' : ''}`}>
         <div className="brief-message-heading"><span><Icon name="whatsapp" size={17} />{ready ? 'TU MENSAJE ESTÁ LISTO' : 'TU MENSAJE TOMA FORMA'}</span>{ready && <button type="button" onClick={copyMessage}><Icon name={copyStatus === 'copied' ? 'check' : 'copy'} size={15} /><span>{copyStatus === 'copied' ? 'Copiado' : 'Copiar'}</span></button>}</div>
