@@ -7,4 +7,4 @@
 - La comunicación pública es institucional: usar ConstruYENDO; no mostrar nombres personales en textos, mensajes, metadatos ni contacto descargable.
 - Visita y presupuesto sin cargo únicamente en la ciudad de Maldonado y Punta del Este. Las demás zonas tienen costo según ubicación; evitar promesas generales de gratuidad.
 - Las fotografías se mejoran mediante ajustes locales de exposición, color y nitidez, sin regeneración con IA; preservar siempre los originales.
-- Por pedido explícito del usuario, el hero usa una escena ilustrativa generada de dos trabajadores de espalda, con cascos y la marca ConstruYENDO. Identificarla como imagen ilustrativa; no incorporarla a la galería de obras reales.
+- Por pedido explícito del usuario, el hero usa desde el 30/10/2026 la imagen ilustrativa proporcionada de dos trabajadores de espalda en una vivienda moderna al atardecer. Identificarla como imagen ilustrativa; no incorporarla a la galería de obras reales. Conservar también el maestro de la portada anterior.

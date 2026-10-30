@@ -47,9 +47,9 @@ El revelado requiere Python con Pillow y NumPy. Los ajustes por foto están en `
 
 ## Contacto y visor
 
-La portada usa una imagen ilustrativa de dos trabajadores de espalda, creada por pedido explícito con la herramienta integrada `image_gen`. El maestro está en `assets/hero/interior-trabajadores-v1.png`; el prompt exacto, en `assets/hero/hero-interior.prompt.txt`; la referencia de marca, en `assets/brand/`. Está rotulada como ilustrativa y se mantiene fuera de la galería de obras reales.
+La portada usa la imagen ilustrativa de dos trabajadores en una vivienda moderna al atardecer, proporcionada por el usuario el 30/10/2026. El original se conserva en `assets/hero/obra-atardecer-v1.png`; la procedencia se registra en `assets/hero/provenance.json`. Está rotulada como ilustrativa y se mantiene fuera de la galería de obras reales. El maestro y el prompt de la portada anterior también se conservan en `assets/hero/`.
 
-`node scripts/prepare-hero.mjs assets/hero/interior-trabajadores-v1.png` genera cuatro WebP para escritorio y celular, sin ampliar el original, y actualiza `src/data/hero-image.json`. La portada conserva la animación de entrada y respeta movimiento reducido.
+`node scripts/prepare-hero.mjs assets/hero/obra-atardecer-v1.png` genera cuatro WebP para escritorio y celular, sin ampliar el original, y actualiza `src/data/hero-image.json`. El encuadre móvil conserva a los dos trabajadores. La portada conserva la animación de entrada y respeta movimiento reducido.
 
 El número y los textos de WhatsApp están en `src/lib/gallery.ts`. El contacto descargable está en `public/contacto.vcf`.
 

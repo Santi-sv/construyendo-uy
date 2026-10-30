@@ -29,7 +29,7 @@
 @media(max-width:1100px) and (min-width:768px){.cinema-hero--workscene{min-height:655px}.cinema-hero--workscene .cinema-copy h1{font-size:8.5vw;letter-spacing:-1px}.cinema-hero--workscene .cinema-edition{display:none}.cinema-hero--workscene .cinema-copy-bottom>p{font-size:12px;max-width:350px}.cinema-hero--workscene .cinema-copy-bottom>.cinema-fee-note{font-size:8px;max-width:340px}.workscene-image-caption{right:22px;bottom:115px;font-size:7px}.workscene-real-work{margin-right:65px;font-size:9px}.workscene-signature strong{font-size:10px}}
 @media(max-width:767px){
   .cinema-hero--workscene{min-height:0;padding-bottom:0;overflow:hidden}
-  .cinema-hero--workscene .workscene-media{position:relative;inset:auto;height:auto;aspect-ratio:1.12;width:100%;background:#45525e;isolation:isolate}
+  .cinema-hero--workscene .workscene-media{position:relative;inset:auto;height:auto;aspect-ratio:4/3;width:100%;background:#45525e;isolation:isolate}
   .workscene-media::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#102034b8 0%,transparent 26%);pointer-events:none}
   .workscene-image{height:100%;object-fit:cover;object-position:center 20%;animation-duration:1.4s}
   .workscene-image-caption{right:18px;bottom:15px;font-size:7px;color:#eef2f6;gap:7px;z-index:2}

@@ -11,7 +11,7 @@ export function Hero() {
     <figure className="workscene-media">
       <picture>
         <source media="(max-width: 767px)" srcSet={mobileSources} sizes="100vw" width={heroImage.mobile.large.width} height={heroImage.mobile.large.height} />
-        <img className="workscene-image" src={assetUrl(heroImage.desktop.large.src)} srcSet={desktopSources} sizes="100vw" width={heroImage.desktop.large.width} height={heroImage.desktop.large.height} alt="Imagen ilustrativa: dos trabajadores de espalda, con cascos y camisas con el logo de ConstruYENDO, colocando revestimientos en un interior." fetchPriority="high" decoding="async" />
+        <img className="workscene-image" src={assetUrl(heroImage.desktop.large.src)} srcSet={desktopSources} sizes="100vw" width={heroImage.desktop.large.width} height={heroImage.desktop.large.height} alt="Imagen ilustrativa: dos trabajadores de espalda realizando tareas de revestimiento en una vivienda moderna frente al agua, al atardecer." fetchPriority="high" decoding="async" />
       </picture>
       <figcaption className="workscene-image-caption">Imagen ilustrativa</figcaption>
     </figure>

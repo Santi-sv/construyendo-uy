@@ -1,26 +1,26 @@
 {
   "desktop": {
     "small": {
-      "src": "/images/hero/interior-trabajadores-desktop-small.webp",
+      "src": "/images/hero/obra-atardecer-desktop-small.webp",
       "width": 1280,
       "height": 720
     },
     "large": {
-      "src": "/images/hero/interior-trabajadores-desktop-large.webp",
+      "src": "/images/hero/obra-atardecer-desktop-large.webp",
       "width": 1672,
       "height": 941
     }
   },
   "mobile": {
     "small": {
-      "src": "/images/hero/interior-trabajadores-mobile-small.webp",
+      "src": "/images/hero/obra-atardecer-mobile-small.webp",
       "width": 640,
-      "height": 600
+      "height": 450
     },
     "large": {
-      "src": "/images/hero/interior-trabajadores-mobile-large.webp",
-      "width": 1004,
-      "height": 941
+      "src": "/images/hero/obra-atardecer-mobile-large.webp",
+      "width": 1280,
+      "height": 900
     }
   }
 }
