@@ -1,7 +1,7 @@
 /* Portada ilustrativa: el oficio y la marca, con encuadres propios para cada pantalla. */
 .cinema-hero--workscene{min-height:665px}
-.cinema-hero--workscene::after{background:linear-gradient(90deg,#0b1829f0 0%,#0b1829cd 26%,#0b18296b 51%,#0b18290a 76%),linear-gradient(0deg,#0b1829ec 0%,#0b18291a 29%,transparent 62%)}
-.workscene-media{position:absolute;inset:0;z-index:auto;overflow:hidden;background:#29384a}
+.cinema-hero--workscene::after{background:linear-gradient(90deg,#080808f0 0%,#080808cd 26%,#0808086b 51%,#0808080a 76%),linear-gradient(0deg,#080808ec 0%,#0808081a 29%,transparent 62%)}
+.workscene-media{position:absolute;inset:0;z-index:auto;overflow:hidden;background:#303030}
 .workscene-media>picture{display:block;width:100%;height:100%}
 .workscene-image{display:block;width:100%;height:100%;object-fit:cover;object-position:center 5%;animation:workscene-enter 1.8s cubic-bezier(.2,.65,.3,1) both}
 @keyframes workscene-enter{from{transform:scale(1.055);opacity:.6}to{transform:scale(1);opacity:1}}
@@ -11,35 +11,35 @@
 .cinema-hero--workscene .cinema-edition{font-size:6px;letter-spacing:1.4px;margin-left:10px;padding-left:18px}
 .cinema-hero--workscene .cinema-copy-bottom{margin-top:25px}
 .cinema-hero--workscene .cinema-copy-bottom>p{max-width:405px;font-size:13px;line-height:1.9}
-.cinema-hero--workscene .cinema-copy-bottom>.cinema-fee-note{font-size:9px;max-width:390px;margin-top:17px;line-height:1.85;color:#bccbd8}
-.workscene-image-caption{position:absolute;right:30px;bottom:121px;z-index:2;color:#e0e7ec;display:flex;align-items:center;gap:8px;font-size:8px;letter-spacing:.5px;pointer-events:none;text-shadow:0 1px 5px #0005}
-.workscene-image-caption::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--orange-light)}
+.cinema-hero--workscene .cinema-copy-bottom>.cinema-fee-note{font-size:9px;max-width:390px;margin-top:17px;line-height:1.85;color:#d0d0d0}
+.workscene-image-caption{position:absolute;right:30px;bottom:121px;z-index:2;color:#e4e4e4;display:flex;align-items:center;gap:8px;font-size:8px;letter-spacing:.5px;pointer-events:none;text-shadow:0 1px 5px #00000055}
+.workscene-image-caption::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--accent-light)}
 .workscene-footer{position:absolute;left:0;right:0;bottom:24px;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:25px;border-top:1px solid #ffffff35;padding-top:20px}
-.workscene-signature{display:flex;align-items:center;gap:14px;color:#dce4ec}
-.workscene-signature>svg{width:29px;height:32px;color:var(--orange-light);flex-shrink:0}
+.workscene-signature{display:flex;align-items:center;gap:14px;color:#e4e4e4}
+.workscene-signature>svg{width:29px;height:32px;color:var(--accent-light);flex-shrink:0}
 .workscene-signature>div{display:flex;flex-direction:column;gap:5px}
 .workscene-signature strong{font-size:11px;font-weight:500;letter-spacing:1.3px}
-.workscene-signature>div>span{font-size:7px;letter-spacing:1.1px;color:#91a7ba}
-.workscene-real-work{display:flex;align-items:center;gap:16px;font-size:10px;color:#f3f6f9;letter-spacing:.2px;padding-block:8px;min-height:42px;margin-right:70px}
+.workscene-signature>div>span{font-size:7px;letter-spacing:1.1px;color:#a0a0a0}
+.workscene-real-work{display:flex;align-items:center;gap:16px;font-size:10px;color:#f5f5f5;letter-spacing:.2px;padding-block:8px;min-height:42px;margin-right:70px}
 .workscene-real-work>span{display:grid;place-items:center;border:1px solid #ffffff55;border-radius:50%;width:34px;height:34px;transition:transform .3s,background .3s}
-.workscene-real-work:hover>span{background:var(--orange);color:var(--navy);transform:rotate(-35deg);border-color:var(--orange)}
+.workscene-real-work:hover>span{background:var(--accent);color:var(--charcoal);transform:rotate(-35deg);border-color:var(--accent)}
 .cinema-hero--workscene .cinema-discover>span:first-child{white-space:nowrap}
 
 @media(min-width:1600px){.workscene-image-caption{right:max(30px,calc((100vw - 1370px)/2))}}
 @media(max-width:1100px) and (min-width:768px){.cinema-hero--workscene{min-height:655px}.cinema-hero--workscene .cinema-copy h1{font-size:8.5vw;letter-spacing:-1px}.cinema-hero--workscene .cinema-edition{display:none}.cinema-hero--workscene .cinema-copy-bottom>p{font-size:12px;max-width:350px}.cinema-hero--workscene .cinema-copy-bottom>.cinema-fee-note{font-size:8px;max-width:340px}.workscene-image-caption{right:22px;bottom:115px;font-size:7px}.workscene-real-work{margin-right:65px;font-size:9px}.workscene-signature strong{font-size:10px}}
 @media(max-width:767px){
   .cinema-hero--workscene{min-height:0;padding-bottom:0;overflow:hidden}
-  .cinema-hero--workscene .workscene-media{position:relative;inset:auto;height:auto;aspect-ratio:4/3;width:100%;background:#45525e;isolation:isolate}
-  .workscene-media::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#102034b8 0%,transparent 26%);pointer-events:none}
+  .cinema-hero--workscene .workscene-media{position:relative;inset:auto;height:auto;aspect-ratio:16/10;width:100%;background:#505050;isolation:isolate}
+  .workscene-media::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0c0c0cb8 0%,transparent 26%);pointer-events:none}
   .workscene-image{height:100%;object-fit:cover;object-position:center 20%;animation-duration:1.4s}
-  .workscene-image-caption{right:18px;bottom:15px;font-size:7px;color:#eef2f6;gap:7px;z-index:2}
+  .workscene-image-caption{right:18px;bottom:15px;font-size:7px;color:#f0f0f0;gap:7px;z-index:2}
   .cinema-hero--workscene .cinema-copy{bottom:auto;padding-top:29px;padding-bottom:29px}
   .cinema-hero--workscene .cinema-eyebrow{font-size:7px;letter-spacing:1.2px;margin-bottom:20px}
   .cinema-hero--workscene .cinema-copy h1{font-size:clamp(43px,14.1vw,82px);letter-spacing:-.65px;line-height:.96}
   .cinema-hero--workscene .cinema-copy-bottom{margin-top:21px}
   .cinema-hero--workscene .cinema-copy-bottom>p{font-size:12px;line-height:1.9;max-width:100%}
   .cinema-hero--workscene .cinema-copy-bottom>p>strong{font-size:11px;font-weight:450}
-  .cinema-hero--workscene .cinema-copy-bottom>.cinema-fee-note{font-size:9px;line-height:1.85;margin-top:16px;max-width:320px;color:#a9bdcf}
+  .cinema-hero--workscene .cinema-copy-bottom>.cinema-fee-note{font-size:9px;line-height:1.85;margin-top:16px;max-width:320px;color:#c0c0c0}
   .workscene-footer{position:relative;bottom:auto;padding-top:20px;padding-bottom:21px;gap:18px;align-items:flex-start}
   .workscene-signature{gap:9px}
   .workscene-signature>svg{width:25px;height:29px}

@@ -16,6 +16,8 @@ import './contact-options.css'
 import './portfolio-explorer.css'
 import './payment-panel.css'
 import './contact-morph.css'
+import './header.css'
+import './action-motion.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

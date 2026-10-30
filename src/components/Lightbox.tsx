@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import type { Project } from '../lib/gallery'
 import { categories, imageDimensions, imageUrl, projectMessage, whatsappUrl } from '../lib/gallery'
-import { Icon } from './Icons'
+import { Brand, Icon } from './Icons'
 
 interface LightboxProps {
   photos: Project[]
@@ -40,7 +40,7 @@ export function Lightbox({ photos, index, onIndexChange, onClose }: LightboxProp
       if (event.key === 'ArrowRight') { event.preventDefault(); next(1) }
     }}>
       <div className="lightbox-bar">
-        <span className="lightbox-brand">CONSTRU<span>YENDO</span><span className="lightbox-bar-label"> / NUESTROS TRABAJOS</span></span>
+        <span className="lightbox-brand"><Brand light /><span className="lightbox-bar-label"> / NUESTROS TRABAJOS</span></span>
         <span className="lightbox-counter" aria-live="polite" aria-atomic="true">{index + 1} <span>/ {photos.length}</span></span>
         <button className="icon-button lightbox-close" aria-label="Cerrar visor" onClick={onClose} autoFocus><Icon name="close" size={25} /></button>
       </div>
@@ -58,7 +58,7 @@ export function Lightbox({ photos, index, onIndexChange, onClose }: LightboxProp
       </div>
       <div className="lightbox-bottom">
         <div><span className="eyebrow lightbox-category">{categories.find((category) => category.id === project.category)?.label}</span><p id="lightbox-description">{project.description}</p><span className="lightbox-hint">Deslizá o usá las flechas para ver más</span></div>
-        <a className="button button--light" href={whatsappUrl(projectMessage(project))} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" />Quiero algo así<Icon name="arrow" size={18} /></a>
+        <a className="button button--whatsapp" href={whatsappUrl(projectMessage(project))} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" />Quiero algo así<Icon name="arrow" size={18} /></a>
       </div>
     </dialog>
   )

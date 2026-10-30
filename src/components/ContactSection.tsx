@@ -11,7 +11,7 @@ export function ContactSection({ photos, onOpen }: { photos: Project[]; onOpen: 
     <div className="container contact-inner">
       <div className="contact-copy" data-reveal="up">
         <span className="eyebrow"><span className="contact-dot" />TU PRÓXIMO PROYECTO EMPIEZA ACÁ</span>
-        <h2 id="contact-title">¿Qué querés<br />revestir?</h2>
+        <h2 id="contact-title">¿Qué querés<br /><span>revestir?</span></h2>
         <p>Por WhatsApp o por teléfono.<br />Elegí cómo te queda más cómodo.</p>
         <ContactActions />
       </div>

@@ -3,6 +3,8 @@
   { "id": "librillo-parrillero", "category": "piedra", "description": "Parrillero revestido en piedra librillo", "prefix": "eb74aee6" },
   { "id": "piscina-escalera", "category": "piscinas", "description": "Piscina y escalera exterior", "prefix": "47402473" },
   { "id": "bano-madera-oxido", "category": "banos", "description": "Baño con piso símil madera y pared símil óxido", "prefix": "56dcfdf5" },
+  { "id": "piso-nivelacion-vista", "category": "pisos", "description": "Piso de gran formato en colocación, con sistema de nivelación", "prefix": "5603eaa7", "detailIds": ["piso-nivelacion-detalle"] },
+  { "id": "piso-nivelacion-detalle", "category": "pisos", "description": "Detalle de juntas y niveladores durante la colocación del piso", "prefix": "188cf567", "detailOf": "piso-nivelacion-vista" },
   { "id": "piso-madera-1", "category": "pisos", "description": "Piso símil madera colocado a traba", "prefix": "6a6911d8", "detailIds": ["piso-madera-2"] },
   { "id": "librillo-parrilla", "category": "piedra", "description": "Estufa revestida en piedra librillo", "prefix": "4b10a7f2" },
   { "id": "escalera-exterior", "category": "escaleras", "description": "Escalera exterior revestida", "prefix": "fc5202f5" },

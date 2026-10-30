@@ -1,10 +1,10 @@
 .contact-options{display:flex;flex-direction:column;gap:13px;margin-top:27px;width:100%;max-width:400px}
 .contact-options .contact-option{width:100%;min-height:61px;display:flex;align-items:center;justify-content:flex-start;gap:12px;padding:14px 20px;font-size:12px;line-height:1.5;text-align:left}
 .contact-options .contact-option>svg:first-of-type{width:23px;height:23px}
-.contact-option--call{background:#ffffff06;color:#f7f5ed;border:1px solid #ffffff65;border-radius:45px;--icon-accent:var(--orange-light)}
-.contact-option--call>svg:last-child{margin-left:auto!important;border:1px solid #ffffff50;border-radius:50%;width:34px;height:34px;padding:8px;color:var(--orange-light);transition:transform .25s}
-.contact-option--call:hover{background:#ffffff12;border-color:#ffb47d}
-.contact-option--call:focus-visible{outline:2px solid var(--orange-light);outline-offset:5px}
+.contact-option--call{background:#ffffff06;color:#f5f5f5;border:1px solid #ffffff65;border-radius:45px;--icon-accent:var(--accent-light)}
+.contact-option--call>svg:last-child{margin-left:auto!important;border:1px solid #ffffff50;border-radius:50%;width:34px;height:34px;padding:8px;color:var(--accent-light);transition:transform .25s}
+.contact-option--call:hover{background:#ffffff12;border-color:#eeeeee}
+.contact-option--call:focus-visible{outline:2px solid var(--accent-light);outline-offset:5px}
 .contact-option--call:active{transform:scale(.98)}
 .contact-action .contact-photo{margin-bottom:3px}
 .contact-action .contact-visit-note{margin-top:20px;max-width:340px;font-size:9px;line-height:1.9}

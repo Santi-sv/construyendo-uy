@@ -1,17 +1,20 @@
-.contact-options .contact-morph{--morph-rest:#f7f5ed;--morph-ink:var(--navy);--morph-edge:transparent;--morph-feedback:#79ddb7;position:relative;isolation:isolate;display:block;padding:0;border:0;border-radius:0;background:transparent;color:var(--morph-ink);height:61px;min-height:61px;overflow:visible;transition:opacity .2s}
-.contact-options .contact-morph--phone{--morph-rest:#ffffff06;--morph-ink:#f7f5ed;--morph-edge:#ffffff65;--morph-feedback:var(--orange-light)}
+.contact-options .contact-morph{--morph-rest:#f5f5f5;--morph-ink:var(--charcoal);--morph-edge:transparent;--morph-feedback:#dddddd;position:relative;isolation:isolate;display:block;padding:0;border:0;border-radius:0;background:transparent;color:var(--morph-ink);height:61px;min-height:61px;overflow:visible;transition:opacity .2s}
+.contact-options .contact-morph--phone{--morph-rest:var(--accent);--morph-ink:var(--black);--morph-edge:var(--accent-light);--morph-feedback:var(--accent-light)}
+.contact-options .contact-morph--whatsapp{--morph-rest:var(--whatsapp-dark);--morph-ink:#fff;--morph-feedback:var(--whatsapp);--morph-edge:#25d36680}
+.contact-morph--whatsapp .contact-morph-arrow{background:#ffffff20;color:#fff}
+.contact-morph--phone .contact-morph-content>svg{--icon-accent:var(--accent-ink)}
 .contact-morph-shape{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:100%;border-radius:40px;border:1px solid var(--morph-edge);background:var(--morph-rest);overflow:hidden;transition:background .2s,border-color .2s;pointer-events:none}
 .contact-morph-content{position:absolute;inset:0;display:flex;align-items:center;gap:12px;padding:13px 20px;white-space:nowrap;pointer-events:none}
-.contact-morph-content>svg{width:23px;height:23px;flex-shrink:0;--icon-accent:var(--orange-light)}
+.contact-morph-content>svg{width:23px;height:23px;flex-shrink:0;--icon-accent:var(--accent-light)}
 .contact-morph-content>span:not(.contact-morph-arrow){font-size:12px;line-height:1.5;font-weight:650}
-.contact-morph-arrow{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;background:var(--orange);border-radius:50%;margin-left:auto;color:var(--navy)}
-.contact-morph--phone .contact-morph-arrow{border:1px solid #ffffff50;background:transparent;color:var(--orange-light)}
+.contact-morph-arrow{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;background:var(--accent);border-radius:50%;margin-left:auto;color:var(--charcoal)}
+.contact-morph--phone .contact-morph-arrow{border:1px solid var(--accent-ink);background:transparent;color:var(--black)}
 .contact-morph-fill{position:absolute;inset:0;background:var(--morph-feedback);transform:scaleX(0);transform-origin:left;pointer-events:none}
-.contact-morph-check{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--navy-deep);pointer-events:none;opacity:0}
+.contact-morph-check{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--black);pointer-events:none;opacity:0}
 .contact-options .contact-morph>svg.contact-morph-check{display:block;width:32px;height:32px;margin:0;padding:0;border:0}
 .contact-morph-check>path{stroke-dasharray:1;stroke-dashoffset:1}
 .contact-options .contact-morph:hover{background:transparent;transform:none}
-.contact-options .contact-morph:focus-visible{outline:2px solid var(--orange-light);outline-offset:5px;border-radius:40px}
+.contact-options .contact-morph:focus-visible{outline:2px solid var(--accent-light);outline-offset:5px;border-radius:40px}
 .contact-options .contact-morph.is-animating{cursor:wait;outline-color:transparent}
 .contact-morph.is-animating .contact-morph-content{animation:contact-label-away .12s ease forwards}
 .contact-morph.is-animating .contact-morph-shape{animation:contact-shape-morph .82s cubic-bezier(.55,0,.2,1) forwards}
@@ -19,13 +22,13 @@
 .contact-morph.is-animating .contact-morph-check{animation:contact-check-appear .08s .82s forwards}
 .contact-morph.is-animating .contact-morph-check>path{animation:contact-check-draw .22s .84s ease forwards}
 .contact-options .contact-morph.is-blocked{opacity:.5;cursor:wait}
-.contact-action-error{font-size:11px;line-height:1.7;color:#ffd1ae;margin-top:12px;max-width:400px}
+.contact-action-error{font-size:11px;line-height:1.7;color:#dcdcdc;margin-top:12px;max-width:400px}
 @keyframes contact-label-away{to{opacity:0;transform:translateY(-5px)}}
-@keyframes contact-shape-morph{0%{width:100%;height:100%;border-radius:40px;background:var(--morph-rest);border-color:var(--morph-edge)}25%,58%{width:100%;height:8px;border-radius:20px;background:#334e60;border-color:transparent}86%{width:66px;height:66px;border-radius:50%;background:var(--morph-feedback);border-color:transparent}100%{width:61px;height:61px;border-radius:50%;background:var(--morph-feedback);border-color:transparent}}
+@keyframes contact-shape-morph{0%{width:100%;height:100%;border-radius:40px;background:var(--morph-rest);border-color:var(--morph-edge)}25%,58%{width:100%;height:8px;border-radius:20px;background:#505050;border-color:transparent}86%{width:66px;height:66px;border-radius:50%;background:var(--morph-feedback);border-color:transparent}100%{width:61px;height:61px;border-radius:50%;background:var(--morph-feedback);border-color:transparent}}
 @keyframes contact-line-fill{0%,12%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}
 @keyframes contact-check-appear{to{opacity:1}}
 @keyframes contact-check-draw{to{stroke-dashoffset:0}}
-@media(hover:hover){.contact-morph:not(.is-animating):not(.is-blocked):hover .contact-morph-shape{background:#ffb47d}.contact-morph--phone:not(.is-animating):not(.is-blocked):hover .contact-morph-shape{background:#ffffff12;border-color:var(--orange-light)}}
+@media(hover:hover){.contact-morph:not(.is-animating):not(.is-blocked):hover .contact-morph-shape{background:var(--whatsapp-hover)}.contact-morph--phone:not(.is-animating):not(.is-blocked):hover .contact-morph-shape{background:var(--accent-light);border-color:var(--accent-light)}}
 @media(max-width:767px){.contact-options .contact-morph{height:60px;min-height:60px}.contact-morph-content{padding-inline:19px}}
 @media(max-width:359px){.contact-morph-content{padding-inline:16px;gap:10px}.contact-morph-content>span:not(.contact-morph-arrow){font-size:11px}}
 @media(prefers-reduced-motion:reduce){.contact-options .contact-morph,.contact-morph-shape{transition:none}.contact-morph.is-animating .contact-morph-content{animation:none;opacity:0}.contact-morph.is-animating .contact-morph-shape{animation:none;width:61px;height:61px;background:var(--morph-feedback);border-color:transparent;border-radius:50%}.contact-morph.is-animating .contact-morph-fill{animation:none;transform:scaleX(1)}.contact-morph.is-animating .contact-morph-check{animation:none;opacity:1}.contact-morph.is-animating .contact-morph-check>path{animation:none;stroke-dashoffset:0}}

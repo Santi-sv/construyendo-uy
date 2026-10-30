@@ -1,0 +1,79 @@
+/* Adaptaciones propias de las referencias 8, 18, 21, 23, 25, 29 y 35 de BrasilCode.
+   Cada sección usa un gesto distinto; las acciones conservan su destino. */
+.cta-shine{position:absolute;inset:0;overflow:hidden;transform:skewX(-12deg);border-radius:3px;pointer-events:none;z-index:0}
+.cta-shine:before{content:'';position:absolute;inset:-30% auto -30% -60%;width:35%;background:linear-gradient(90deg,transparent,#ffffff40,transparent);transform:skewX(-15deg)}
+.next-cta>.next-label,.next-cta>.next-arrow,.next-cta>.whatsapp-brand-icon{position:relative;z-index:1}
+.next-cta:is(:hover,:focus-visible)>.cta-shine:before{animation:cta-shine-pass .8s ease-out both}
+.next-cta:active>.cta-shine:before{animation:cta-shine-tap .5s ease-out both}
+
+/* Portada: halo y círculo direccional; secundarios con desplazamiento vertical. */
+.cinema-copy-bottom .button--halo>.button-arrow>svg{transition:transform .3s}
+.cinema-copy-bottom .button--halo:focus-visible>.button-arrow{transform:rotate(-35deg)}
+.cinema-copy-bottom .button--halo:active>.button-arrow>svg{transform:translateX(3px)}
+.cinema-discover:is(:hover,:focus-visible)>span:last-child{animation:cta-discover-drop .65s ease 2;background:#dfbc941a;border-color:var(--accent)}
+.cinema-discover:active>span:last-child{transform:translateY(4px)}
+.workscene-real-work:is(:hover,:focus-visible)>span{transform:rotate(-35deg);background:var(--accent);color:var(--black);border-color:var(--accent)}
+
+/* Portafolio: barrido de luz; metodología: línea que avanza hacia la flecha. */
+.gallery-section-action .next-cta:is(:hover,:focus-visible){filter:drop-shadow(0 5px 9px #117c3e25)}
+.process-cta-link{position:relative}
+.process-cta-link:after{content:'';position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),var(--whatsapp-dark));transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
+.process-cta-link:is(:hover,:focus-visible):after{transform:scaleX(1)}
+.process-cta-link:is(:hover,:focus-visible)>span:first-child>.whatsapp-brand-icon{animation:cta-message-pop .75s ease 2}
+
+/* Pagos: contorno dibujado, con un breve avance del icono de visita. */
+.payment-visit-button>.cta-outline{position:absolute;inset:0;width:100%;height:100%;margin:0;fill:none;stroke:#fff4dc;stroke-width:1.5;transform:skewX(-12deg);overflow:visible;pointer-events:none;z-index:1}
+.cta-outline>rect{stroke-dasharray:1;stroke-dashoffset:1;opacity:0;vector-effect:non-scaling-stroke;transition:stroke-dashoffset .75s ease,opacity .2s}
+.payment-visit-button:is(:hover,:focus-visible)>.cta-outline>rect{stroke-dashoffset:0;opacity:1}
+.payment-visit-button:is(:hover,:focus-visible)>.constru-icon--visit{animation:cta-visit-lift .7s ease 2}
+.payment-visit-button:active{transform:translate(2px,2px)}
+
+/* Zonas: el círculo conserva el recorrido de borde y responde con el símbolo. */
+.coverage-outside:is(:hover,:focus-visible) .coverage-link-arrow>.whatsapp-brand-icon{animation:cta-message-pop .8s ease 2}
+.coverage-outside:active .coverage-link-arrow{transform:scale(.94)}
+
+/* Contacto: burbuja de conversación y timbre del teléfono, sobre el morph al clic. */
+.contact-morph-content>.whatsapp-brand-icon,.contact-morph-content>.constru-icon--phone{transform-origin:center;will-change:transform}
+.contact-morph-arrow{position:relative;transition:width .3s,background .3s,transform .3s,box-shadow .3s}
+.contact-morph-arrow>svg{transition:transform .3s}
+.contact-morph-shape:after{content:'';position:absolute;inset:-40% auto -40% -55%;width:35%;background:linear-gradient(90deg,transparent,#ffffff26,transparent);transform:skewX(-22deg);pointer-events:none}
+.contact-morph:not(.is-animating):not(.is-blocked):is(:hover,:focus-visible) .contact-morph-shape:after{animation:cta-shine-pass .85s ease-out both}
+.contact-morph--whatsapp:not(.is-animating):not(.is-blocked):is(:hover,:focus-visible) .contact-morph-content>.whatsapp-brand-icon{animation:cta-message-pop .8s ease 2}
+.contact-morph--phone:not(.is-animating):not(.is-blocked):is(:hover,:focus-visible) .contact-morph-content>.constru-icon--phone{animation:cta-phone-ring .65s ease 2}
+.contact-morph:not(.is-animating):not(.is-blocked):is(:hover,:focus-visible) .contact-morph-arrow{transform:translateX(3px);box-shadow:0 0 0 5px #ffffff0d}
+.contact-morph--phone:not(.is-animating):not(.is-blocked):is(:hover,:focus-visible) .contact-morph-arrow>svg{transform:rotate(-35deg)}
+.contact-options .contact-morph:not(.is-animating):not(.is-blocked):active{transform:scale(.98)}
+.contact-copy.is-revealed .contact-morph--whatsapp .contact-morph-content>.whatsapp-brand-icon{animation:cta-message-pop .8s .5s 2}
+.contact-copy.is-revealed .contact-morph--phone .contact-morph-content>.constru-icon--phone{animation:cta-phone-ring .65s 1s 2}
+
+/* WhatsApp flotante, envío, descarga y visor: gestos acordes a su acción. */
+.floating-whatsapp:is(:hover,:focus-visible)>.whatsapp-brand-icon{animation:cta-message-pop .8s ease 2}
+.quote-send-button:is(:hover,:focus-visible)>.whatsapp-brand-icon{animation:cta-message-pop .7s ease 2}
+.button--fizzy:active .button-flourish>i{animation:construction-fizzy .8s var(--delay) both}
+.lightbox-bottom .button--whatsapp{position:relative;isolation:isolate;overflow:hidden;transition:background .25s,box-shadow .25s,transform .25s}
+.lightbox-bottom .button--whatsapp:before{content:'';position:absolute;inset:-30% auto -30% -50%;width:30%;background:linear-gradient(90deg,transparent,#ffffff30,transparent);transform:skewX(-15deg);pointer-events:none}
+.lightbox-bottom .button--whatsapp:is(:hover,:focus-visible):before{animation:cta-shine-pass .8s ease-out both}
+.lightbox-bottom .button--whatsapp:is(:hover,:focus-visible)>svg:last-child{animation:cta-arrow-travel .65s ease 2}
+.lightbox-bottom .button--whatsapp:active{transform:scale(.98)}
+.brief-message-heading>button,.brief-next-step{transition:background .2s,transform .2s,box-shadow .2s}
+.brief-message-heading>button:is(:hover,:focus-visible){transform:translateY(-2px);box-shadow:0 4px 9px #275f9e15}
+.brief-message-heading>button:active{transform:scale(.96)}
+.brief-next-step:is(:hover,:focus-visible)>svg{animation:cta-arrow-travel .65s ease 2}
+.brief-field:is(:hover,:focus-visible) .brief-field-icon{transform:translateY(-2px)}
+.brief-field-icon{transition:transform .25s}
+.footer-domain:is(:hover,:focus-visible)>svg{animation:cta-arrow-travel .65s ease 2}
+
+@keyframes cta-shine-pass{to{left:150%}}
+@keyframes cta-shine-tap{to{left:150%}}
+@keyframes cta-message-pop{0%,100%{transform:translateY(0) scale(1)}35%{transform:translateY(-3px) scale(1.13)}65%{transform:translateY(1px) scale(.98)}}
+@keyframes cta-phone-ring{0%,100%{transform:rotate(0)}15%{transform:rotate(-17deg)}30%{transform:rotate(15deg)}45%{transform:rotate(-12deg)}60%{transform:rotate(9deg)}75%{transform:rotate(-4deg)}}
+@keyframes cta-discover-drop{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@keyframes cta-visit-lift{0%,100%{transform:translateY(0)}45%{transform:translateY(-4px)}}
+@keyframes cta-arrow-travel{0%,100%{transform:translateX(0)}55%{transform:translateX(5px)}}
+@media(prefers-reduced-motion:reduce){
+  .cta-shine,.cta-outline,.contact-morph-shape:after,.lightbox-bottom .button--whatsapp:before{display:none}
+  .contact-morph-content>svg,.contact-morph-arrow,.contact-morph-arrow>svg,.brief-field-icon,.brief-message-heading>button,.brief-next-step{transition:none!important}
+  .contact-copy.is-revealed .contact-morph-content>svg,.contact-morph-content>svg,.contact-morph-arrow>svg,.cinema-discover>span:last-child,.workscene-real-work>span,.process-cta-link>span:first-child>svg,.payment-visit-button>svg,.coverage-link-arrow>svg,.floating-whatsapp>svg,.quote-send-button>svg,.lightbox-bottom .button--whatsapp>svg,.brief-next-step>svg,.footer-domain>svg{animation:none!important;transform:none!important}
+  .process-cta-link:after{transition:none}
+  .brief-field:is(:hover,:focus-visible) .brief-field-icon,.brief-message-heading>button:is(:hover,:focus-visible){transform:none}
+}

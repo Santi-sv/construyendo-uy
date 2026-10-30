@@ -22,7 +22,7 @@ export function Icon({ name, size = 22, className = '', style }: { name: IconNam
     copy: <><path d="M8 7h9l4 4v10H8Z" /><path d="M17 7v4h4M16 3H3v14" /><path className="icon-accent" d="M11 14h7m-7 3h5" /></>,
     download: <><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5" /><path className="icon-accent" d="M4 18h4m8 0h4" /></>,
     expand: <><path d="M3 9V3h6m6 0h6v6M3 15v6h6m6 0h6v-6" /><path d="m9 15 6-6m-4 0h4v4" strokeOpacity=".45" /></>,
-    location: <><path d="m12 22-6.1-8.2A7.6 7.6 0 1 1 18.1 13.8Z" /><path className="icon-plane" d="m12 6 3 3-3 3-3-3Z" /><path className="icon-accent" d="m12 6 3 3-3 3-3-3Z" /><path d="M7 22h10" strokeOpacity=".35" /></>,
+    location: <><ellipse cx="12" cy="21" rx="5" ry="1.5" fill="currentColor" fillOpacity=".12" stroke="none" /><path d="M12 21S5 13.8 5 9A7 7 0 0 1 19 9c0 4.8-7 12-7 12Z" fill="currentColor" fillOpacity=".14" /><circle cx="12" cy="9" r="2.7" className="icon-accent" fill="white" fillOpacity=".7" /><path d="M8 8a4 4 0 0 1 3-3" strokeOpacity=".35" /></>,
     money: <><path d="M2 6h20v13H2Zm3-3h14M2 10h3V6m14 13v-4h3" /><path className="icon-accent" d="m12 9 3 3-3 4-3-4Z" /><path d="M5 15h1m12-5h1" /></>,
     phone: <><path d="m4 3 5 1 1 5-3 2a16 16 0 0 0 6 6l2-3 5 1 1 5c-1 2-4 2-7 1A21 21 0 0 1 3 10C2 7 2 4 4 3Z" /><path className="icon-accent" d="M15 3h6v6m-6-6 6 6" /></>,
     ruler: <><path d="m2 17 15-15 5 5L7 22ZM6 13l3 3m1-7 3 3m1-7 3 3" /><path className="icon-accent" d="m3 8 5-5m-5 0h5v5" /></>,
@@ -49,5 +49,5 @@ export function TileMark({ className = '' }: { className?: string }) {
 }
 
 export function Brand({ light = false }: { light?: boolean }) {
-  return <span className={`brand ${light ? 'brand--light' : ''}`}><TileMark className="brand-symbol" /><span className="brand-type"><span className="brand-name">CONSTRU<span>YENDO</span></span><span className="brand-subtitle">REVESTIMIENTOS</span></span></span>
+  return <span className={`brand ${light ? 'brand--light' : ''}`} role="img" aria-label="ConstruYENDO Revestimientos. Diseño, calidad y durabilidad."><span className="brand-type"><span className="brand-name"><span className="brand-constru">Constru</span><span className="brand-yendo">Yendo</span></span><span className="brand-rule" aria-hidden="true" /><span className="brand-subtitle">REVESTIMIENTOS</span><span className="brand-tagline">Diseño<span>•</span>Calidad<span>•</span>Durabilidad</span></span></span>
 }

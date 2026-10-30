@@ -1,0 +1,34 @@
+/* Navegación de marca: letras, enlaces agrupados y WhatsApp reconocible. */
+.site-header--refined{background:linear-gradient(110deg,#181818f5,#0c0c0cf5);border-bottom:1px solid #dfbc9438;box-shadow:0 5px 28px #00000012}
+.site-header--refined .header-inner{gap:24px}
+.site-header--refined .brand-name{font-size:30px}
+.site-header--refined .brand-link{padding:8px 5px 8px 0;transition:filter .25s}
+.site-header--refined .brand-link:hover{filter:brightness(1.15)}
+.site-header--refined .desktop-nav{display:flex;align-items:center;gap:4px;padding:5px;margin:0 auto;border:1px solid #dfbc9429;background:#ffffff04;border-radius:12px;box-shadow:inset 0 1px 0 #ffffff04}
+.site-header--refined .desktop-nav a{display:flex;align-items:center;gap:8px;padding:11px 13px;border:1px solid transparent;border-radius:8px;color:#d7d1c9;font-size:10px;font-weight:650;letter-spacing:.15px;line-height:1.5;text-transform:none;white-space:nowrap;transition:color .2s,background .25s,border-color .25s,box-shadow .25s,transform .25s}
+.site-header--refined .desktop-nav a>svg{color:var(--accent);opacity:.8;width:17px;height:17px}
+.site-header--refined .desktop-nav a:after{display:none}
+.site-header--refined .desktop-nav a:hover{color:#fff;background:#dfbc9412;transform:translateY(-1px);border-color:#dfbc9425}
+.site-header--refined .desktop-nav a[aria-current]{color:var(--black);background:linear-gradient(120deg,var(--accent-light),var(--accent));border-color:#f2d6b1;box-shadow:0 3px 12px #00000020}
+.site-header--refined .desktop-nav a[aria-current]>svg{color:#604622;opacity:1}
+.header-actions{display:flex;align-items:center;gap:15px;flex-shrink:0}
+.site-header--refined .header-whatsapp.next-cta{min-height:49px;padding:9px 14px;gap:12px}
+.site-header--refined .header-whatsapp.next-cta:before{border:1px solid #4edc8c50;box-shadow:4px 4px 0 #00000055;border-radius:3px}
+.site-header--refined .header-whatsapp.next-cta>.whatsapp-brand-icon{width:23px;height:23px}
+.header-contact-copy{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.header-contact-copy .next-label{font-size:12px;line-height:1.4}
+.header-contact-copy small{font-size:5px;letter-spacing:1.1px;color:#c0ebce;line-height:1.5}
+.header-menu-toggle{display:none;position:relative;width:42px;height:42px;border:1px solid #dfbc9460;border-radius:8px;background:#dfbc940b;color:var(--accent);align-items:center;justify-content:center;flex-direction:column;gap:5px;transition:background .25s,border-color .25s}
+.header-menu-toggle>span{display:block;width:18px;height:1.5px;background:currentColor;transition:transform .25s,opacity .2s}
+.header-menu-toggle>span:nth-child(2){width:13px;align-self:flex-start;margin-left:11px}
+.header-menu-toggle[aria-expanded="true"]>span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.header-menu-toggle[aria-expanded="true"]>span:nth-child(2){opacity:0}
+.header-menu-toggle[aria-expanded="true"]>span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.header-menu-toggle:is(:hover,:focus-visible){background:#dfbc9420;border-color:var(--accent)}
+.mobile-nav{display:none}
+@media(max-width:1250px) and (min-width:1101px){.site-header--refined .header-inner{gap:16px}.site-header--refined .desktop-nav a{padding-inline:9px;font-size:9px;gap:6px}.site-header--refined .brand-name{font-size:26px}}
+@media(max-width:1100px){.site-header--refined .desktop-nav{display:none}.header-actions{margin-left:auto}.header-menu-toggle{display:flex}.mobile-nav{display:block;position:absolute;left:0;right:0;top:calc(100% + 10px);padding:18px;background:linear-gradient(135deg,#211c17,#111);border:1px solid #dfbc9459;border-top:2px solid var(--accent);border-radius:12px;box-shadow:0 18px 35px #0000003d;animation:header-menu-enter .24s ease-out both}.mobile-nav-kicker{display:block;font-size:7px;letter-spacing:1.5px;color:var(--accent);padding:3px 5px 12px}.mobile-nav a{display:flex;align-items:center;gap:13px;padding:12px 8px;border-top:1px solid #dfbc941c;font-size:13px;color:#f2ede7;transition:background .2s,color .2s}.mobile-nav a[aria-current]{color:var(--accent-light)}.mobile-nav-icon{display:grid;place-items:center;width:35px;height:35px;border:1px solid #dfbc9438;border-radius:8px;background:#dfbc940d;color:var(--accent)}.mobile-nav a>small{margin-left:auto;color:#8c8070;font-size:8px;letter-spacing:1px}.mobile-nav a>svg{color:var(--accent)}.mobile-nav a:hover{background:#dfbc940c}}
+@media(max-width:767px){.site-header--refined .header-inner{gap:12px}.header-actions{gap:12px}.site-header--refined .header-whatsapp.next-cta{min-height:42px;height:42px;width:57px;padding:8px;gap:5px}.site-header--refined .header-whatsapp .header-contact-copy{display:none}.site-header--refined .header-whatsapp.next-cta>.whatsapp-brand-icon{width:21px;height:21px}.header-menu-toggle{width:38px;height:38px}.site-header--refined .header-whatsapp .next-arrow{width:17px;flex-basis:17px}.site-header--refined .header-whatsapp .next-arrow>svg{width:20px}.site-header--refined .brand-name{font-size:26px}.site-header--refined .brand-subtitle{letter-spacing:3.3px}}
+@media(max-width:359px){.header-actions{gap:9px}.site-header--refined .brand-name{font-size:24px}.site-header--refined .brand-subtitle{letter-spacing:2.9px}.site-header--refined .header-inner{gap:8px}}
+@keyframes header-menu-enter{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.mobile-nav{animation:none}.header-menu-toggle>span,.site-header--refined .desktop-nav a{transition:none}.site-header--refined .desktop-nav a:hover{transform:none}}

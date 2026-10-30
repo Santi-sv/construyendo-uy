@@ -1,26 +1,26 @@
 {
   "desktop": {
     "small": {
-      "src": "/images/hero/obra-atardecer-desktop-small.webp",
+      "src": "/images/hero/instaladores-baldosas-v1-desktop-small.webp",
       "width": 1280,
       "height": 720
     },
     "large": {
-      "src": "/images/hero/obra-atardecer-desktop-large.webp",
+      "src": "/images/hero/instaladores-baldosas-v1-desktop-large.webp",
       "width": 1672,
       "height": 941
     }
   },
   "mobile": {
     "small": {
-      "src": "/images/hero/obra-atardecer-mobile-small.webp",
+      "src": "/images/hero/instaladores-baldosas-v1-mobile-small.webp",
       "width": 640,
-      "height": 450
+      "height": 400
     },
     "large": {
-      "src": "/images/hero/obra-atardecer-mobile-large.webp",
+      "src": "/images/hero/instaladores-baldosas-v1-mobile-large.webp",
       "width": 1280,
-      "height": 900
+      "height": 800
     }
   }
 }

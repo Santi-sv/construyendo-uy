@@ -1,11 +1,11 @@
 /* Original CSS adaptations of the circle, bubble and fizzy references selected by the client. */
 .quote-section{overflow-x:clip}
-.button--halo{position:relative;isolation:isolate;overflow:visible;border-radius:100px;background:linear-gradient(115deg,#ffb47d,#f28a3d);box-shadow:0 8px 27px #ef873a35;padding:7px 7px 7px 25px;min-height:60px;gap:25px;transition:transform .25s,box-shadow .25s,background .25s}
+.button--halo{position:relative;isolation:isolate;overflow:visible;border-radius:100px;background:linear-gradient(115deg,var(--accent-light),var(--accent));box-shadow:0 8px 27px #dfbc9435;padding:7px 7px 7px 25px;min-height:60px;gap:25px;transition:transform .25s,box-shadow .25s,background .25s}
 .button--halo>span{position:relative;z-index:1}
-.button--halo>.button-arrow{width:44px;height:44px;border-radius:50%;background:#172b43;color:#fff4e8;transition:transform .3s,background .3s}
-.button--halo:before{content:'';position:absolute;inset:-6px;border:1px solid #ffb47d;opacity:0;border-radius:100px;transition:opacity .3s}
-.button--halo:after{content:'';position:absolute;z-index:-1;top:50%;left:50%;width:62px;height:62px;border-radius:50%;border:2px solid #ffb47d;pointer-events:none;opacity:0;animation:construction-halo 1.6s 1s 2}
-.button--halo:focus-visible{outline:2px solid #fff3df;outline-offset:9px;box-shadow:0 10px 35px #ef873a55}
+.button--halo>.button-arrow{width:44px;height:44px;border-radius:50%;background:#181818;color:#f5f5f5;transition:transform .3s,background .3s}
+.button--halo:before{content:'';position:absolute;inset:-6px;border:1px solid var(--accent);opacity:0;border-radius:100px;transition:opacity .3s}
+.button--halo:after{content:'';position:absolute;z-index:-1;top:50%;left:50%;width:62px;height:62px;border-radius:50%;border:2px solid var(--accent);pointer-events:none;opacity:0;animation:construction-halo 1.6s 1s 2}
+.button--halo:focus-visible{outline:2px solid #f5f5f5;outline-offset:9px;box-shadow:0 10px 35px #90909055}
 .button--halo:focus-visible:before{opacity:.7}
 .button--halo:focus-visible:after{animation:construction-halo-hover 1.6s 2}
 .button--halo:active{transform:scale(.98)}
@@ -13,45 +13,45 @@
 @keyframes construction-halo-hover{0%{transform:translate(-50%,-50%) scale(.6);opacity:.65}100%{transform:translate(-50%,-50%) scale(3.5);opacity:0}}
 
 .button-flourish{position:absolute;inset:0;pointer-events:none;z-index:-1}
-.button-flourish>i{position:absolute;left:var(--x);top:var(--y);border-radius:50%;width:8px;height:8px;opacity:0;transform:translate(-50%,-50%) scale(0);background:var(--orange-light)}
-.button--bubble{--bubble-color:#238355;position:relative;isolation:isolate;overflow:visible}
+.button-flourish>i{position:absolute;left:var(--x);top:var(--y);border-radius:50%;width:8px;height:8px;opacity:0;transform:translate(-50%,-50%) scale(0);background:var(--accent-light)}
+.button--bubble{--bubble-color:#303030;position:relative;isolation:isolate;overflow:visible}
 .button--bubble>.button-flourish{z-index:-1}
 .button--bubble>:not(.button-flourish){position:relative;z-index:1}
 .button-flourish--bubble>i{width:20px;height:20px;background:var(--bubble-color)}
 .button-flourish--bubble>i:nth-child(2n){width:13px;height:13px}
 .button-flourish--bubble>i:nth-child(3n){width:26px;height:26px}
-.quote-send-button.button--bubble{background:#1c6b45;box-shadow:0 5px 15px #1c6b4512;transition:background .25s,box-shadow .25s,transform .25s}
-.quote-send-button.button--bubble:focus-visible{background:#185c3c;outline-color:#1c6b45;box-shadow:0 5px 22px #1c6b4526}
-.button--contact.button--bubble{--bubble-color:#ffb47d}
-.button--contact.button--bubble:focus-visible{background:#ffb47d}
+.quote-send-button.button--bubble{--bubble-color:var(--whatsapp);background:var(--whatsapp-dark);box-shadow:0 5px 15px #18181812;transition:background .25s,box-shadow .25s,transform .25s}
+.quote-send-button.button--bubble:focus-visible{background:var(--whatsapp-hover);outline-color:var(--whatsapp);box-shadow:0 5px 22px #18181826}
+.button--contact.button--bubble{--bubble-color:#eeeeee}
+.button--contact.button--bubble:focus-visible{background:#eeeeee}
 .button--bubble:focus-visible .button-flourish>i{animation:construction-bubbles .85s var(--delay) both}
 .button--bubble:active{transform:scale(.98)}
 .button--bubble:active .button-flourish>i{animation:construction-bubbles-tap .7s var(--delay) both}
 @keyframes construction-bubbles{0%{opacity:.9;transform:translate(-50%,-50%) scale(.45)}45%{opacity:1;transform:translate(calc(-50% + var(--dx)*.55),calc(-50% + var(--dy)*.55)) scale(1.05)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.1)}}
 @keyframes construction-bubbles-tap{0%{opacity:.9;transform:translate(-50%,-50%) scale(.45)}45%{opacity:1;transform:translate(calc(-50% + var(--dx)*.55),calc(-50% + var(--dy)*.55)) scale(1.05)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.1)}}
 
-.contact-action .save-contact.button--fizzy{position:relative;isolation:isolate;overflow:visible;min-height:52px;padding:7px 20px 7px 8px;border-radius:6px;border:1px solid #ffffff65;color:#e8eff4;font-size:11px;gap:12px;transition:background .25s,border-color .25s,transform .25s;margin-top:23px}
+.contact-action .save-contact.button--fizzy{position:relative;isolation:isolate;overflow:visible;min-height:52px;padding:7px 20px 7px 8px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--black);font-size:11px;gap:12px;transition:background .25s,border-color .25s,transform .25s;margin-top:23px}
 .button--fizzy>:not(.button-flourish){position:relative;z-index:1}
-.fizzy-download-icon{display:grid;place-items:center;width:34px;height:34px;border:1px solid #ffb47d80;border-radius:50%;color:var(--orange-light)}
+.fizzy-download-icon{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--accent-ink);border-radius:50%;color:var(--black)}
 .fizzy-download-icon>svg{transition:transform .3s}
-.button-flourish--fizzy>i{width:6px;height:6px;background:#ffb47d}
-.button-flourish--fizzy>i:nth-child(3n){background:#8faec8;width:8px;height:8px}
-.button-flourish--fizzy>i:nth-child(3n + 1){background:#f0dfc5;width:5px;height:5px}
-.button-flourish--fizzy>i:nth-child(4n){background:#9bbb9e}
+.button-flourish--fizzy>i{width:6px;height:6px;background:#eeeeee}
+.button-flourish--fizzy>i:nth-child(3n){background:#b0b0b0;width:8px;height:8px}
+.button-flourish--fizzy>i:nth-child(3n + 1){background:#e4e4e4;width:5px;height:5px}
+.button-flourish--fizzy>i:nth-child(4n){background:#b0b0b0}
 .button--fizzy:focus-visible .button-flourish>i{animation:construction-fizzy 1.1s var(--delay) 2 both}
 .button--fizzy:focus-visible .fizzy-download-icon>svg{transform:translateY(2px)}
 .button--fizzy:active{transform:scale(.98)}
 @keyframes construction-fizzy{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}20%{opacity:.9}75%{opacity:.75}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.5)}}
 
 @media(hover:hover){
-  .button--halo:hover{background:linear-gradient(115deg,#ffc394,#f99a53);transform:translateY(-3px);box-shadow:0 10px 32px #ef873a55}
+  .button--halo:hover{background:linear-gradient(115deg,#f2d9ba,#e5bc89);transform:translateY(-3px);box-shadow:0 10px 32px #90909055}
   .button--halo:hover:before{opacity:.7}
   .button--halo:hover:after{animation:construction-halo-hover 1.6s 2}
-  .button--halo:hover>.button-arrow{background:#172b43;transform:rotate(-35deg)}
+  .button--halo:hover>.button-arrow{background:#181818;transform:rotate(-35deg)}
   .button--bubble:hover .button-flourish>i{animation:construction-bubbles .85s var(--delay) both}
-  .quote-send-button.button--bubble:hover{background:#238355;box-shadow:0 7px 23px #1c6b452b}
-  .button--contact.button--bubble:hover{background:var(--orange-light)}
-  .contact-action .button--fizzy:hover{background:#ffffff10;border-color:#ffb47d;transform:translateY(-2px)}
+  .quote-send-button.button--bubble:hover{background:var(--whatsapp-hover);box-shadow:0 7px 23px #1818182b}
+  .button--contact.button--bubble:hover{background:var(--accent-light)}
+  .contact-action .button--fizzy:hover{background:var(--accent-light);border-color:var(--accent-light);transform:translateY(-2px)}
   .button--fizzy:hover .button-flourish>i{animation:construction-fizzy 1.1s var(--delay) 2 both}
   .button--fizzy:hover .fizzy-download-icon>svg{transform:translateY(2px)}
   .header-whatsapp .header-arrow,.payment-visit-button>svg:last-child,.button--outline>svg:last-child{transition:transform .25s}

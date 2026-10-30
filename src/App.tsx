@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Brand, Icon } from './components/Icons'
 import { Hero } from './components/Hero'
+import { SiteHeader } from './components/SiteHeader'
 import { CoverageAndPayment } from './components/CoverageAndPayment'
 import { QuoteRequest } from './components/QuoteRequest'
 import { ContactSection } from './components/ContactSection'
@@ -77,19 +78,7 @@ function App() {
   return (
     <>
       <a href="#contenido" className="skip-link">Ir al contenido</a>
-      <header className="site-header">
-        <div className="page-scroll-progress" aria-hidden="true" />
-        <div className="header-inner container">
-          <a href="#inicio" className="brand-link" aria-label="ConstruYENDO Revestimientos, inicio"><Brand /></a>
-          <nav aria-label="Navegación principal" className="desktop-nav">
-            <a href="#trabajos" aria-current={activeSection === 'trabajos' ? 'location' : undefined}>Trabajos</a>
-            <a href="#como-trabajamos" aria-current={activeSection === 'como-trabajamos' ? 'location' : undefined}>Cómo trabajamos</a>
-            <a href="#zona-y-pagos" aria-current={activeSection === 'zona-y-pagos' ? 'location' : undefined}>Zona y pagos</a>
-            <a href="#presupuesto" aria-current={activeSection === 'presupuesto' ? 'location' : undefined}>Presupuesto</a>
-          </nav>
-          <a href={whatsappUrl(visitMessage)} className="header-whatsapp next-cta next-cta--header" aria-label="Contactar a ConstruYENDO por WhatsApp" target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={21} /><span className="next-label">Hablemos</span><NextArrow /></a>
-        </div>
-      </header>
+      <SiteHeader activeSection={activeSection} />
 
       <main id="contenido">
         <Hero />
@@ -113,14 +102,14 @@ function App() {
             </button>
           ))}</div>}
           </div>
-          <div className="gallery-section-action" data-reveal="up"><p>Tu espacio, con tu impronta.</p><a className="button button--outline next-cta next-cta--navy" href={whatsappUrl(visitMessage)} target="_blank" rel="noopener noreferrer"><span className="next-label">Conversemos sobre tu obra</span><NextArrow /></a></div>
+          <div className="gallery-section-action" data-reveal="up"><p>Tu espacio, con tu impronta.</p><a className="button button--outline next-cta next-cta--whatsapp" href={whatsappUrl(visitMessage)} target="_blank" rel="noopener noreferrer"><span className="cta-shine" aria-hidden="true" /><Icon name="whatsapp" size={21} /><span className="next-label">Conversemos sobre tu obra</span><NextArrow /></a></div>
           <div className="gallery-footnote"><span><span className="status-dot" />Trabajos reales. Cada uno, a su medida.</span><span>{filtered.length.toString().padStart(2, '0')} FOTOS / {categories.find((item) => item.id === category)?.label.toLocaleUpperCase('es')}</span></div>
         </section>
 
         <section id="como-trabajamos" className="how-section section-space">
           <div className="container"><div className="section-heading" data-reveal="up"><div><span className="eyebrow section-kicker"><span className="small-line" />SIMPLE, DE PRINCIPIO A FIN</span><h2>Cómo trabajamos<span className="heading-dot">.</span></h2></div><p>Un trato directo. Un presupuesto claro.<br className="desktop-break" /> Y todo resuelto, hasta el último detalle.</p></div>
             <div className="how-story"><div className="how-photo" data-reveal="left"><PhotoCarousel photos={workflowPhotos} label="Del proceso a la terminación" variant="editorial" scrollAdvance onOpen={openPhotos} /><span className="how-photo-note">EL OFICIO ESTÁ EN CADA DETALLE.</span></div><div className="steps-grid">{steps.map((step, index) => <article className="step" data-reveal="up" key={step.title}><div className="step-top"><span className="step-number">0{index + 1}</span><Icon name={stepIcons[index]} size={29} /></div><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></div>
-            <a href={whatsappUrl(visitMessage)} className="process-cta-link" target="_blank" rel="noopener noreferrer"><span>Coordinemos una visita a tu obra</span><span className="round-arrow next-cta next-cta--navy next-cta--icon"><NextArrow /></span></a>
+            <a href={whatsappUrl(visitMessage)} className="process-cta-link" target="_blank" rel="noopener noreferrer"><span><Icon name="whatsapp" size={22} />Coordinemos una visita a tu obra</span><span className="round-arrow next-cta next-cta--whatsapp next-cta--icon"><NextArrow /></span></a>
           </div>
         </section>
 
