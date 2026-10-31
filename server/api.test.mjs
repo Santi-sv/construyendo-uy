@@ -10,11 +10,11 @@ import { localStore } from './local-store.mjs'
 const seed = JSON.parse(await fs.readFile(new URL('./seed.json', import.meta.url), 'utf8'))
 const origin = 'https://cms.example.test'
 const code = 'Ensayo de acceso privado 2026'
-async function fixture(context, configured = true) {
+async function fixture(context, configured = true, publicSite = 'https://santi-sv.github.io/construyendo-uy/') {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'cy-cms-test-'))
   context.after(() => fs.rm(directory, { recursive: true, force: true }))
   const storage = await localStore(directory)
-  const env = { ...storage, SEED: seed, ADMIN_ORIGIN: origin, PUBLIC_SITE_URL: 'https://santi-sv.github.io/construyendo-uy/', CLIENT_IP: 'test-client', DEV_MODE: false }
+  const env = { ...storage, SEED: seed, ADMIN_ORIGIN: origin, PUBLIC_SITE_URL: publicSite, CLIENT_IP: 'test-client', DEV_MODE: false }
   if (configured) await env.STORE.create('credential', JSON.stringify(await hashCode(code)))
   async function call(route, { method = 'GET', body, cookie, csrf, requestOrigin = origin, headers = {} } = {}) {
     const request = new Request(`${origin}${route}`, { method, headers: { ...(body === undefined ? {} : { 'Content-Type': 'application/json' }), ...(cookie ? { Cookie: cookie } : {}), ...(csrf ? { 'X-CSRF-Token': csrf } : {}), ...(method === 'GET' ? {} : { Origin: requestOrigin }), ...headers }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) })
@@ -233,4 +233,25 @@ test('CORS administrativo rechaza orígenes, métodos y cabeceras ajenos y manti
   const blocked = await call(privatePath, { headers: { ...headers, Origin: 'https://ajeno.example' } })
   assert.equal(blocked.status, 403)
   assert.equal(blocked.headers.get('access-control-allow-origin'), null)
+})
+
+test('el dominio propio recibe imágenes y acceso privado sin autorizar el origen anterior', async context => {
+  const { call } = await fixture(context, true, 'https://construyendo.uy/')
+  const site = 'https://construyendo.uy'
+  const login = await call('/api/admin/login', { method: 'POST', requestOrigin: site, body: { code } })
+  assert.equal(login.status, 200)
+  assert.equal(login.headers.get('access-control-allow-origin'), site)
+  assert.equal(login.headers.get('set-cookie'), null)
+  const session = await login.json()
+  const headers = { Origin: site, Authorization: `Bearer ${session.sessionToken}` }
+  const content = await call('/api/admin/content', { headers })
+  assert.equal(content.status, 200)
+  const data = await content.json()
+  assert.ok(data.photos.every(photo => photo.image.small.startsWith(`${site}/images/`)))
+  assert.ok(data.locations.every(place => place.image.small.startsWith(`${site}/images/`)))
+  assert.ok(data.hero.image.desktop.large.src.startsWith(`${site}/images/`))
+  const oldOrigin = await call('/api/admin/content', { headers: { ...headers, Origin: 'https://santi-sv.github.io' } })
+  assert.equal(oldOrigin.status, 403)
+  assert.equal(oldOrigin.headers.get('access-control-allow-origin'), null)
+  assert.equal((await call('/api/admin/content')).status, 401)
 })

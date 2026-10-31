@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://santi-sv.github.io/construyendo-uy/sitemap.xml
+Sitemap: https://construyendo.uy/sitemap.xml

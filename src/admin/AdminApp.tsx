@@ -10,7 +10,7 @@ type Session = { csrf: string; expiresAt: number }
 type Tab = 'gallery' | 'hero' | 'locations' | 'settings'
 const draftData = (content: AdminContent) => ({ photos: content.photos.map(({ id, category, description, mediaId, visible }) => ({ id, category, description, mediaId, visible })), locations: content.locations.map(({ id, caption, mediaId }) => ({ id, caption, mediaId })), hero: { mediaId: content.hero.mediaId, kind: content.hero.kind, alt: content.hero.alt } })
 const dateLabel = (date: string | null) => date ? new Intl.DateTimeFormat('es-UY', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(date)) : 'Todavía no hay publicaciones desde el panel'
-const publicSite = import.meta.env.VITE_PUBLIC_SITE_URL || (import.meta.env.DEV ? '/' : 'https://santi-sv.github.io/construyendo-uy/')
+const publicSite = import.meta.env.VITE_PUBLIC_SITE_URL || new URL(import.meta.env.BASE_URL, location.origin).href
 
 function Shield({ size = 24 }: { size?: number }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m12 2 8 3v6c0 5-4 8-8 11-4-3-8-6-8-11V5Z" /><path d="m8 12 3 3 5-6" /></svg> }
 export default function AdminApp() {
