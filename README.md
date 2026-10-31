@@ -131,7 +131,7 @@ La tarjeta de cobertura utiliza `public/images/maps/maldonado-calles.svg`: calle
 
 ## Administrador de imágenes
 
-Panel del equipo: https://construyendo-uy-equipo.sam777-varela.chatgpt.site/admin. Está alojado en Sites, sobre un Worker de Cloudflare con D1 y R2. La web pública continúa en GitHub Pages; `src/data/cms-hosting.json` define el servicio del que lee las imágenes y los datos publicados. `VITE_CMS_ORIGIN` permite sobrescribir ese origen al compilar. En desarrollo se usa el servicio local integrado a Vite.
+Panel del equipo: https://santi-sv.github.io/construyendo-uy/admin.html. La interfaz está alojada en GitHub Pages. El enlace anterior del panel redirige automáticamente a Pages; el servicio de autenticación e imágenes continúa sobre un Worker de Cloudflare con D1 y R2. `src/data/cms-hosting.json` define el servicio; `VITE_CMS_ORIGIN` permite sobrescribir ese origen al compilar. En desarrollo se usa el servicio local integrado a Vite.
 
 Administra las fotos de obras, la portada y las imágenes de localidades mediante un código compartido, que se puede cambiar en Configuración. Usa autenticación del lado del servidor, borradores y publicación separados; no valida la clave en el navegador ni guarda credenciales en localStorage. El código y sus registros privados no forman parte del repositorio ni de la compilación pública.
 

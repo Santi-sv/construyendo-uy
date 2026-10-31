@@ -12,7 +12,14 @@ export default {
     if (context?.waitUntil && Date.now() - lastPrune > 60_000) { lastPrune = Date.now(); context.waitUntil(env.STORE.purgeExpired().catch(() => {})) }
     if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/media/')) return handleApi(request, env)
     if (!['GET', 'HEAD'].includes(request.method)) return new Response(null, { status: 405 })
-    const pathname = ['/', '/admin', '/admin/'].includes(url.pathname) ? '/admin.html' : url.pathname
+    if (['/', '/admin', '/admin/', '/admin.html'].includes(url.pathname)) {
+      const base = bindings.PUBLIC_SITE_URL.endsWith('/') ? bindings.PUBLIC_SITE_URL : `${bindings.PUBLIC_SITE_URL}/`
+      const panel = new URL('admin.html', base)
+      // Evita reutilizar el HTML anterior de Pages que redirigía al servicio.
+      panel.searchParams.set('v', 'github-pages')
+      return new Response(null, { status: 302, headers: { Location: panel.href, 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer', 'X-Content-Type-Options': 'nosniff', 'Strict-Transport-Security': 'max-age=31536000' } })
+    }
+    const pathname = url.pathname
     const asset = assets[pathname]
     if (!asset) return new Response('Recurso no disponible.', { status: 404 })
     const payload = request.method === 'HEAD' ? null : Uint8Array.from(atob(asset.bytes), character => character.charCodeAt(0))

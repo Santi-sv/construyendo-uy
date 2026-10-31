@@ -2,6 +2,8 @@
 
 Dirección del panel: https://santi-sv.github.io/construyendo-uy/admin.html. GitHub Pages aloja la interfaz y la web institucional. El servicio seguro de acceso e imágenes continúa en Sites, con D1 y R2, en https://construyendo-uy-equipo.sam777-varela.chatgpt.site. Proyecto del servicio: `appgprj_6ae5409ab6bc8191978a878f69331d02`.
 
+Los accesos antiguos al servicio (`/`, `/admin`, `/admin/` y `/admin.html`) redirigen a GitHub Pages, con una versión de URL que evita la caché del HTML anterior. No se trasladan parámetros ni credenciales de la solicitud a la redirección. Las rutas de API e imágenes mantienen sus controles de acceso.
+
 ## Uso local
 
 1. Ejecutar `npm run cms:setup` en una terminal interactiva y elegir el código inicial. La entrada no se muestra. Para una revisión temporal, `npm run cms:setup -- --random-local` crea un código aleatorio en `.cms-data/acceso-local.txt`, con permiso de lectura solo para el usuario local. El archivo no se sirve por HTTP ni se incluye en Git.
