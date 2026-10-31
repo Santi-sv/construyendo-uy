@@ -51,21 +51,33 @@ export async function getCredential(env) {
   }
   return raw ? { raw, value: JSON.parse(raw) } : null
 }
-export async function createSession(env, version) {
+export function pagesOrigin(env) {
+  try {
+    const url = new URL(env.PUBLIC_SITE_URL)
+    return url.protocol === 'https:' && url.origin !== new URL(env.ADMIN_ORIGIN).origin ? url.origin : null
+  } catch { return null }
+}
+export const isPagesRequest = (request, env) => !!pagesOrigin(env) && request.headers.get('origin') === pagesOrigin(env)
+export async function createSession(env, version, request) {
   const token = randomToken()
   const now = Date.now()
-  const session = { csrf: randomToken(), version, createdAt: now, seenAt: now, expiresAt: now + sessionHours * 3600_000 }
+  const crossOrigin = request && isPagesRequest(request, env)
+  const session = { csrf: randomToken(), version, createdAt: now, seenAt: now, expiresAt: now + sessionHours * 3600_000, ...(crossOrigin ? { transport: 'bearer', origin: pagesOrigin(env) } : {}) }
   await env.STORE.create(`session:${await digest(token)}`, JSON.stringify(session), session.expiresAt)
-  return { session, cookie: sessionCookie(env, token) }
+  return { session, ...(crossOrigin ? { sessionToken: token } : { cookie: sessionCookie(env, token) }) }
 }
 export async function authenticate(request, env) {
-  const token = (request.headers.get('cookie') || '').split(';').map(part => part.trim()).find(part => part.startsWith(`${cookieName(env)}=`))?.split('=')[1]
+  const authorization = request.headers.get('authorization')
+  const bearer = authorization !== null
+  if (bearer ? !isPagesRequest(request, env) : isPagesRequest(request, env)) return null
+  const token = bearer ? authorization.match(/^Bearer ([a-f0-9]{64})$/)?.[1] : (request.headers.get('cookie') || '').split(';').map(part => part.trim()).find(part => part.startsWith(`${cookieName(env)}=`))?.split('=')[1]
   if (!token || !/^[a-f0-9]{64}$/.test(token)) return null
   const key = `session:${await digest(token)}`
   const raw = await env.STORE.get(key)
   const credential = await getCredential(env)
   if (!raw || !credential) return null
   const session = JSON.parse(raw)
+  if (bearer ? session.transport !== 'bearer' || session.origin !== request.headers.get('origin') : session.transport === 'bearer') return null
   const now = Date.now()
   if (session.version !== credential.value.version || now >= session.expiresAt || now - session.seenAt > idleMinutes * 60_000) {
     await env.STORE.delete(key)

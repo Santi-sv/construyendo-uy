@@ -1,4 +1,4 @@
-import { authenticate, consumeLimit, createSession, digest, getCredential, hashCode, sessionCookie, validCode, validCsrf, verifyCode } from './auth.mjs'
+import { authenticate, consumeLimit, createSession, digest, getCredential, hashCode, isPagesRequest, pagesOrigin, sessionCookie, validCode, validCsrf, verifyCode } from './auth.mjs'
 
 class ApiError extends Error {
   constructor(status, message, headers = {}) { super(message); this.status = status; this.headers = headers }
@@ -15,7 +15,7 @@ function json(body, status = 200, headers = {}) {
   return new Response(JSON.stringify(body), { status, headers: { ...secureHeaders, 'Content-Type': 'application/json; charset=utf-8', ...headers } })
 }
 function requireOrigin(request, env) {
-  if (!env.ADMIN_ORIGIN || request.headers.get('origin') !== new URL(env.ADMIN_ORIGIN).origin) fail(403, 'Origen no autorizado.')
+  if (!env.ADMIN_ORIGIN || (request.headers.get('origin') !== new URL(env.ADMIN_ORIGIN).origin && !isPagesRequest(request, env))) fail(403, 'Origen no autorizado.')
   if (!env.DEV_MODE && new URL(env.ADMIN_ORIGIN).protocol !== 'https:') fail(503, 'El panel requiere una conexión HTTPS.')
 }
 async function bytes(request, maximum) {
@@ -165,7 +165,7 @@ async function serveImage(request, env, id, size, session) {
   if (!image) fail(404, 'Imagen no disponible.')
   return new Response(request.method === 'HEAD' ? null : image, { headers: { ...secureHeaders, 'Content-Type': 'image/jpeg', 'Content-Disposition': 'inline', 'Cache-Control': session ? 'no-store' : 'public, max-age=86400', 'Cross-Origin-Resource-Policy': 'cross-origin' } })
 }
-export async function handleApi(request, env) {
+async function dispatchApi(request, env) {
   try {
     const url = new URL(request.url); const path = url.pathname
     if (!env.DEV_MODE && (url.protocol !== 'https:' || !env.ADMIN_ORIGIN?.startsWith('https://'))) fail(503, 'El servicio requiere HTTPS.')
@@ -176,6 +176,14 @@ export async function handleApi(request, env) {
     const publicImage = path.match(/^\/media\/([^/]+)\/(small|large)\.jpg$/)
     if (publicImage && ['GET', 'HEAD'].includes(request.method)) return await serveImage(request, env, publicImage[1], publicImage[2], null)
     if (!path.startsWith('/api/admin/')) fail(404, 'Recurso no disponible.')
+    if (request.method === 'OPTIONS') {
+      if (!isPagesRequest(request, env)) fail(403, 'Origen no autorizado.')
+      const method = request.headers.get('access-control-request-method')
+      const headers = (request.headers.get('access-control-request-headers') || '').toLowerCase().split(',').map(value => value.trim()).filter(Boolean)
+      if (!['GET', 'HEAD', 'POST', 'PUT'].includes(method) || headers.some(header => !['authorization', 'content-type', 'x-csrf-token'].includes(header))) fail(403, 'Solicitud no autorizada.')
+      return new Response(null, { status: 204, headers: { ...secureHeaders, 'Access-Control-Allow-Methods': 'GET, HEAD, POST, PUT', 'Access-Control-Allow-Headers': 'Authorization, Content-Type, X-CSRF-Token', 'Access-Control-Max-Age': '600' } })
+    }
+    if (request.headers.has('origin') && request.headers.get('origin') !== new URL(env.ADMIN_ORIGIN).origin && !isPagesRequest(request, env)) fail(403, 'Origen no autorizado.')
     if (!['GET', 'HEAD'].includes(request.method)) requireOrigin(request, env)
     if (path === '/api/admin/login' && request.method === 'POST') {
       const input = await bodyJson(request, 1024)
@@ -188,8 +196,8 @@ export async function handleApi(request, env) {
       if (!await verifyCode(input?.code, credential.value)) fail(401, 'El código no es correcto.')
       const current = await getCredential(env)
       if (current.raw !== credential.raw) fail(401, 'El código cambió. Volvé a ingresar.')
-      const { session, cookie } = await createSession(env, credential.value.version)
-      return json({ csrf: session.csrf, expiresAt: session.expiresAt }, 200, { 'Set-Cookie': cookie })
+      const next = await createSession(env, credential.value.version, request)
+      return json({ csrf: next.session.csrf, expiresAt: next.session.expiresAt, ...(next.sessionToken ? { sessionToken: next.sessionToken } : {}) }, 200, next.cookie ? { 'Set-Cookie': next.cookie } : {})
     }
     const session = await authenticate(request, env)
     if (!session) fail(401, 'Ingresá con el código de acceso.')
@@ -197,7 +205,7 @@ export async function handleApi(request, env) {
     if (path === '/api/admin/session' && request.method === 'GET') return json({ csrf: session.csrf, expiresAt: session.expiresAt })
     if (path === '/api/admin/logout' && request.method === 'POST') {
       await env.STORE.delete(session.key)
-      return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie(env, '', 0) })
+      return json({ ok: true }, 200, session.transport === 'bearer' ? {} : { 'Set-Cookie': sessionCookie(env, '', 0) })
     }
     const privateImage = path.match(/^\/api\/admin\/media\/([^/]+)\/(small|large)\.jpg$/)
     if (privateImage && ['GET', 'HEAD'].includes(request.method)) return await serveImage(request, env, privateImage[1], privateImage[2], session)
@@ -212,8 +220,8 @@ export async function handleApi(request, env) {
       const credential = await hashCode(input.newCode, session.version + 1)
       if (!await env.STORE.cas('credential', session.credential.raw, JSON.stringify(credential))) fail(409, 'El código ya cambió en otra sesión. Volvé a ingresar.')
       await env.STORE.delete(session.key)
-      const next = await createSession(env, credential.version)
-      return json({ csrf: next.session.csrf, expiresAt: next.session.expiresAt }, 200, { 'Set-Cookie': next.cookie })
+      const next = await createSession(env, credential.version, request)
+      return json({ csrf: next.session.csrf, expiresAt: next.session.expiresAt, ...(next.sessionToken ? { sessionToken: next.sessionToken } : {}) }, 200, next.cookie ? { 'Set-Cookie': next.cookie } : {})
     }
     if (path === '/api/admin/content' && request.method === 'GET') return json(await adminContent(env, (await readState(env)).value))
     if ((path === '/api/admin/content' && request.method === 'PUT') || (path === '/api/admin/publish' && request.method === 'POST')) {
@@ -233,4 +241,12 @@ export async function handleApi(request, env) {
     console.error('CMS: la operación no pudo completarse.', error?.name || 'Error')
     return json({ error: 'No pudimos completar la operación. Intentá nuevamente.' }, 500)
   }
+}
+export async function handleApi(request, env) {
+  const response = await dispatchApi(request, env)
+  if (new URL(request.url).pathname.startsWith('/api/admin/') && isPagesRequest(request, env)) {
+    response.headers.set('Access-Control-Allow-Origin', pagesOrigin(env))
+    response.headers.set('Vary', 'Origin')
+  }
+  return response
 }

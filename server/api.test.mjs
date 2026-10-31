@@ -165,3 +165,72 @@ test('el límite nativo de Workers conserva exactamente el mismo PBKDF2 de 600.0
   assert.equal(await verifyCode(code, credential), true)
   assert.equal(await verifyCode('Otra clave que no corresponde', credential), false)
 })
+
+test('el panel en Pages usa una sesión en memoria ligada al origen, sin cookies de terceros', async context => {
+  const { call, login, env } = await fixture(context)
+  const pages = 'https://santi-sv.github.io'
+  const response = await call('/api/admin/login', { method: 'POST', requestOrigin: pages, body: { code } })
+  assert.equal(response.status, 200)
+  assert.equal(response.headers.get('access-control-allow-origin'), pages)
+  assert.equal(response.headers.get('vary'), 'Origin')
+  assert.equal(response.headers.get('access-control-allow-credentials'), null)
+  assert.equal(response.headers.get('set-cookie'), null)
+  const session = await response.json()
+  assert.match(session.sessionToken, /^[a-f0-9]{64}$/)
+  const auth = { headers: { Origin: pages, Authorization: `Bearer ${session.sessionToken}` } }
+  assert.equal((await call('/api/admin/content', auth)).status, 200)
+  const persisted = JSON.parse(await env.STORE.get(`session:${await digest(session.sessionToken)}`))
+  assert.equal(persisted.origin, pages)
+  assert.equal(persisted.transport, 'bearer')
+  assert.equal((await call('/api/admin/content', { headers: { Authorization: `Bearer ${session.sessionToken}` } })).status, 401)
+  assert.equal((await call('/api/admin/content', { headers: { Origin: origin, Authorization: `Bearer ${session.sessionToken}` } })).status, 401)
+  assert.equal((await call('/api/admin/content', { cookie: `__Host-cy_admin=${session.sessionToken}` })).status, 401)
+  const cookieSession = await login()
+  assert.equal((await call('/api/admin/content', { cookie: cookieSession.cookie, headers: { Origin: pages } })).status, 401)
+  assert.equal((await call('/api/admin/content', { headers: { Origin: pages, Authorization: `Bearer ${cookieSession.cookie.split('=')[1]}` } })).status, 401)
+  const initial = await (await call('/api/admin/content', auth)).json()
+  assert.equal((await call('/api/admin/content', { ...auth, method: 'PUT', requestOrigin: pages, body: clean(initial) })).status, 403)
+  const saved = await call('/api/admin/content', { ...auth, method: 'PUT', requestOrigin: pages, csrf: session.csrf, body: clean(initial) })
+  assert.equal(saved.status, 200)
+  const rotated = await call('/api/admin/code', { ...auth, method: 'POST', requestOrigin: pages, csrf: session.csrf, body: { currentCode: code, newCode: 'Un nuevo acceso de prueba 2026' } })
+  assert.equal(rotated.status, 200)
+  assert.equal(rotated.headers.get('set-cookie'), null)
+  const next = await rotated.json()
+  assert.match(next.sessionToken, /^[a-f0-9]{64}$/)
+  assert.notEqual(next.sessionToken, session.sessionToken)
+  assert.equal((await call('/api/admin/content', auth)).status, 401)
+  const nextAuth = { headers: { Origin: pages, Authorization: `Bearer ${next.sessionToken}` } }
+  assert.equal((await call('/api/admin/content', nextAuth)).status, 200)
+  assert.equal((await call('/api/admin/logout', { ...nextAuth, method: 'POST', requestOrigin: pages, csrf: next.csrf, body: {} })).status, 200)
+  assert.equal((await call('/api/admin/content', nextAuth)).status, 401)
+})
+
+test('CORS administrativo rechaza orígenes, métodos y cabeceras ajenos y mantiene privadas las fotos', async context => {
+  const { call, env } = await fixture(context)
+  const pages = 'https://santi-sv.github.io'
+  const preflight = { method: 'OPTIONS', requestOrigin: pages, headers: { 'Access-Control-Request-Method': 'PUT', 'Access-Control-Request-Headers': 'authorization, content-type, x-csrf-token' } }
+  const accepted = await call('/api/admin/content', preflight)
+  assert.equal(accepted.status, 204)
+  assert.equal(accepted.headers.get('access-control-allow-origin'), pages)
+  for (const requestOrigin of ['https://ajeno.example', 'https://santi-sv.github.io.ajeno.example', 'http://santi-sv.github.io', 'null']) {
+    const rejected = await call('/api/admin/content', { ...preflight, requestOrigin })
+    assert.equal(rejected.status, 403)
+    assert.equal(rejected.headers.get('access-control-allow-origin'), null)
+  }
+  assert.equal((await call('/api/admin/content', { ...preflight, headers: { 'Access-Control-Request-Method': 'DELETE' } })).status, 403)
+  assert.equal((await call('/api/admin/content', { ...preflight, headers: { 'Access-Control-Request-Method': 'PUT', 'Access-Control-Request-Headers': 'x-foreign-header' } })).status, 403)
+  const loggedIn = await (await call('/api/admin/login', { method: 'POST', requestOrigin: pages, body: { code } })).json()
+  const headers = { Origin: pages, Authorization: `Bearer ${loggedIn.sessionToken}`, 'X-CSRF-Token': loggedIn.csrf }
+  const image = await sharp({ create: { width: 64, height: 48, channels: 3, background: '#cbb496' } }).jpeg().toBuffer()
+  const form = new FormData(); for (const size of ['small', 'large']) form.append(size, new Blob([image], { type: 'image/jpeg' }), `${size}.jpg`)
+  const upload = await handleApi(new Request(`${origin}/api/admin/media`, { method: 'POST', headers, body: form }), env)
+  assert.equal(upload.status, 201)
+  const { id } = await upload.json()
+  const privatePath = `/api/admin/media/${id}/small.jpg`
+  assert.equal((await call(privatePath, { headers })).status, 200)
+  assert.equal((await call(privatePath)).status, 401)
+  assert.equal((await call(`/media/${id}/small.jpg`)).status, 404)
+  const blocked = await call(privatePath, { headers: { ...headers, Origin: 'https://ajeno.example' } })
+  assert.equal(blocked.status, 403)
+  assert.equal(blocked.headers.get('access-control-allow-origin'), null)
+})

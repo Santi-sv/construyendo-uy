@@ -1,3 +1,20 @@
+import { cmsOrigin } from '../lib/managedContent'
+const apiOrigin = cmsOrigin && cmsOrigin !== location.origin ? cmsOrigin : ''
+// La sesión de Pages vive solo en memoria: nunca en URLs ni almacenamiento del navegador.
+let sessionToken = ''
+function requestOptions(): Pick<RequestInit, 'credentials' | 'headers'> {
+  return { credentials: apiOrigin ? 'omit' : 'same-origin', headers: apiOrigin && sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {} }
+}
+export function privateMediaUrl(value: string) {
+  try { const url = new URL(value, location.href); return url.origin === (apiOrigin || location.origin) && /^\/api\/admin\/media\/[a-f0-9-]+\/(small|large)\.jpg$/.test(url.pathname) ? url.href : null } catch { return null }
+}
+export async function adminImage(src: string, signal: AbortSignal): Promise<Blob> {
+  const url = privateMediaUrl(src)
+  if (!url) throw new Error('Imagen privada inválida.')
+  const response = await fetch(url, { ...requestOptions(), cache: 'no-store', signal })
+  if (!response.ok) throw new AdminError('No pudimos cargar la vista previa.', response.status)
+  return response.blob()
+}
 export class AdminError extends Error {
   constructor(message: string, public status: number) { super(message) }
 }
@@ -5,10 +22,13 @@ export async function adminRequest<T>(path: string, csrf?: string, body?: unknow
   const form = body instanceof FormData
   let response: Response
   try {
-    response = await fetch(`/api/admin/${path}`, { method, credentials: 'same-origin', cache: 'no-store', headers: { ...(body === undefined || form ? {} : { 'Content-Type': 'application/json' }), ...(csrf ? { 'X-CSRF-Token': csrf } : {}) }, body: body === undefined ? undefined : form ? body : JSON.stringify(body) })
+    const options = requestOptions()
+    response = await fetch(`${apiOrigin}/api/admin/${path}`, { ...options, method, cache: 'no-store', headers: { ...options.headers, ...(body === undefined || form ? {} : { 'Content-Type': 'application/json' }), ...(csrf ? { 'X-CSRF-Token': csrf } : {}) }, body: body === undefined ? undefined : form ? body : JSON.stringify(body) })
   } catch { throw new AdminError('No pudimos conectar con el administrador. Revisá la conexión e intentá nuevamente.', 0) }
   const result = await response.json().catch(() => ({}))
   if (!response.ok) throw new AdminError(result.error || 'No pudimos completar la operación.', response.status)
+  if (apiOrigin && typeof result.sessionToken === 'string') sessionToken = result.sessionToken
+  if (path === 'logout') sessionToken = ''
   return result as T
 }
 export async function prepareUpload(file: File): Promise<FormData> {

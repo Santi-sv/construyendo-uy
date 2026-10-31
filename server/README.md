@@ -17,7 +17,9 @@ El servicio local se integra a Vite y se limita a la interfaz de loopback. Los r
 - PBKDF2-HMAC-SHA256, 600.000 iteraciones y salt aleatorio. Si Workers rechaza esa cantidad en Web Crypto, se calcula el mismo algoritmo y resultado con @noble/hashes, conservando las 600.000 iteraciones. No hay un código predeterminado en el código fuente ni en la compilación pública.
 - Sesiones aleatorias de 256 bits: el servidor conserva el hash del identificador. Cookies HttpOnly, SameSite=Strict y Secure en producción, con prefijo `__Host-`.
 - Vencimiento absoluto de 8 horas y de 30 minutos por inactividad. Cambiar el código requiere el código actual e invalida las sesiones anteriores.
-- Todas las operaciones administrativas verifican sesión; las escrituras verifican Origin y un token CSRF. No hay CORS administrativo ni una ruta pública de registro/configuración inicial.
+- Todas las operaciones administrativas verifican sesión; las escrituras verifican Origin y un token CSRF. No hay una ruta pública de registro/configuración inicial.
+- El panel de GitHub Pages se conecta solo al servicio configurado. El servidor permite CORS administrativo exclusivamente al origen HTTPS de `PUBLIC_SITE_URL`, sin cookies de terceros. Emite una sesión aleatoria ligada a ese origen, conservada únicamente en memoria y enviada por Authorization, nunca en URLs, localStorage ni sessionStorage. Al recargar el panel se solicita nuevamente el código. Las vistas previas privadas se obtienen mediante solicitudes autenticadas y URLs Blob temporales.
+- El acceso directo en el origen del servicio conserva cookies HttpOnly/Secure/SameSite=Strict. Una sesión de Pages no sirve como cookie, ni una cookie como sesión de Pages. Ambas tienen la misma expiración, CSRF, límites y revocación por cambio de código.
 - Cinco intentos de ingreso por dirección cada 15 minutos; límite global de 60 por minuto. Los contadores se guardan del lado del servidor.
 - Fotos nuevas privadas hasta publicar. El navegador normaliza las fotos a JPEG en dos tamaños, sin modificar el archivo original. El servidor verifica tipo, tamaño, dimensiones y ausencia de EXIF/XMP/IPTC/comentarios; rechaza SVG.
 - Borrador y publicación separados, con revisiones para detectar ediciones concurrentes. Se conservan los IDs originales que utilizan otras secciones.
@@ -27,7 +29,7 @@ Esto no reemplaza una revisión independiente de seguridad ni verifica la config
 
 ## Alojamiento de producción
 
-GitHub Pages sirve el sitio estático; la autenticación y el almacenamiento requieren un servicio separado. El servicio utiliza un Worker ESM de Cloudflare con D1 y R2, administrados por Sites.
+GitHub Pages sirve el sitio público y el panel en `https://santi-sv.github.io/construyendo-uy/admin.html`. La autenticación y el almacenamiento requieren un servicio separado. El servicio utiliza un Worker ESM de Cloudflare con D1 y R2, administrados por Sites.
 
 `npm run cms:build` genera `.cms-dist/server/index.js`, que incluye la interfaz administrativa y las rutas del servicio. La configuración de producción utiliza estos pasos; para futuras actualizaciones se conserva el proyecto existente:
 
@@ -35,8 +37,8 @@ GitHub Pages sirve el sitio estático; la autenticación y el almacenamiento req
 - Configurar `ADMIN_ORIGIN` con el origen HTTPS del panel y `PUBLIC_SITE_URL` con `https://santi-sv.github.io/construyendo-uy/`.
 - Establecer `BOOTSTRAP_CREDENTIAL` como secreto del servidor: un registro producido por `hashCode` de `auth.mjs`, nunca el código en texto ni una variable `VITE_`. No existe una pantalla pública de inicialización.
 - Desplegar y probar el Worker real, los bindings, las cookies, las cargas y el cambio de código. La compilación local no prueba por sí sola el entorno Cloudflare ni los límites de su plan.
-- Compilar el sitio público con `VITE_CMS_ORIGIN` igual al origen HTTPS del panel. Eso habilita la lectura del contenido publicado y el enlace «Acceso del equipo».
-- Publicar GitHub Pages únicamente ante un pedido del usuario. El panel se utiliza en el origen del servicio, para evitar depender de cookies de terceros.
+- Compilar el sitio público y el panel con `VITE_CMS_ORIGIN` igual al origen HTTPS del servicio. Eso habilita la lectura del contenido publicado y la conexión segura del panel. El enlace «Acceso del equipo» apunta al `admin.html` del propio GitHub Pages.
+- Publicar GitHub Pages únicamente ante un pedido del usuario. La compilación genera ambas entradas HTML; nunca incluye credenciales ni datos de sesión.
 
 La primera publicación se verificó mediante acceso HTTPS real, rechazo del acceso anónimo, cookies de sesión, controles de origen y CSRF, carga privada, publicación y lectura de la imagen desde R2. La prueba restauró el contenido inicial de la galería. No se vinculó ningún dominio ni se solicitó Vercel. La fuente del servicio y su manifiesto están en el checkout independiente `cms-hosted/`, excluido del repositorio público de la web. Su migración inicial fue generada en `drizzle/` y debe conservarse una vez aplicada.
 

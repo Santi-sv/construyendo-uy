@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { ManagedHero, ManagedLocation, ManagedPhoto, PhotoCategory } from '../lib/managedContent'
 import { Icon } from '../components/Icons'
+import { AdminImage } from './AdminImage'
 export const categoryNames: Record<PhotoCategory, string> = { banos: 'Baños', pisos: 'Pisos', piscinas: 'Piscinas', piedra: 'Piedra librillo', escaleras: 'Escaleras' }
 export type ImageEdit = { file: File | null; description: string; category: PhotoCategory; visible: boolean; kind: 'real' | 'illustrative' }
 export function PhotoEditor({ photo, hero, location, onClose, onSave }: { photo?: ManagedPhoto; hero?: ManagedHero; location?: ManagedLocation; onClose: () => void; onSave: (edit: ImageEdit) => Promise<void> }) {
@@ -23,7 +24,7 @@ export function PhotoEditor({ photo, hero, location, onClose, onSave }: { photo?
   return <dialog className="cms-dialog" ref={dialog} onCancel={event => { if (pending) event.preventDefault(); else onClose() }} onClose={onClose} aria-labelledby="image-edit-title">
     <form onSubmit={async event => { event.preventDefault(); if (!file && !photo && !hero && !location) { setError('Elegí una imagen para continuar.'); return } setPending(true); setError(''); try { await onSave({ file, description, category, visible, kind }) } catch (failure) { setError(failure instanceof Error ? failure.message : 'No pudimos guardar la imagen.'); setPending(false) } }}>
       <div className="cms-dialog-head"><div><span className="cms-kicker">{location ? location.label.toUpperCase() : hero ? 'PORTADA' : 'FOTOGRAFÍA'}</span><h2 id="image-edit-title">{location ? 'Imagen de la localidad' : hero ? 'Editar portada' : photo ? 'Editar foto' : 'Agregar foto'}</h2></div><button className="cms-icon-button" type="button" onClick={onClose} disabled={pending} aria-label="Cerrar editor"><Icon name="close" /></button></div>
-      <div className="cms-editor-preview">{preview ? <img src={preview} alt="Vista previa de la imagen elegida" /> : <div><Icon name="grid" size={40} /><p>Elegí una foto de tu trabajo</p></div>}</div>
+      <div className="cms-editor-preview">{preview ? <AdminImage src={preview} alt="Vista previa de la imagen elegida" /> : <div><Icon name="grid" size={40} /><p>Elegí una foto de tu trabajo</p></div>}</div>
       <input ref={input} type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={event => { setFile(event.target.files?.[0] || null); setError('') }} />
       <button type="button" className="cms-button cms-button--outline cms-file-button" disabled={pending} onClick={() => input.current?.click()}><Icon name="download" size={17} />{preview ? 'Elegir otra imagen' : 'Elegir imagen'}</button>
       <p className="cms-help">JPG, PNG o WebP · Hasta 25 MB. El archivo original no se modifica.</p>

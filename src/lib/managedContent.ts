@@ -8,7 +8,7 @@ export type ManagedLocation = { id: string; label: string; caption: string; medi
 export type ManagedContent = { schemaVersion: 1; photos: ManagedPhoto[]; locations: ManagedLocation[]; hero: ManagedHero; revision: number; publishedAt: string | null }
 export type AdminContent = ManagedContent & { publishedRevision: number; hasUnpublishedChanges: boolean }
 export const cmsOrigin = (import.meta.env.VITE_CMS_ORIGIN || (import.meta.env.DEV ? '' : hostedConfiguration.origin)).replace(/\/$/, '')
-export const adminUrl = cmsOrigin ? `${cmsOrigin}/admin` : import.meta.env.DEV ? '/admin.html' : ''
+export const adminUrl = `${import.meta.env.BASE_URL}admin.html`
 let active: ManagedContent | null = null
 export function managedLocation(id: string) { return active?.locations.find(place => place.id === id) }
 export function managedHero() { return active?.hero }
