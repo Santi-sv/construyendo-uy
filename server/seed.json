@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 1,
+  "photos": [
+    {
+      "id": "piso-marmol-negro",
+      "category": "pisos",
+      "description": "Piso porcelanato símil mármol negro",
+      "prefix": "41af647e",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "librillo-parrillero",
+      "category": "piedra",
+      "description": "Parrillero revestido en piedra librillo",
+      "prefix": "eb74aee6",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piscina-escalera",
+      "category": "piscinas",
+      "description": "Piscina y escalera exterior",
+      "prefix": "47402473",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "bano-madera-oxido",
+      "category": "banos",
+      "description": "Baño con piso símil madera y pared símil óxido",
+      "prefix": "56dcfdf5",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piso-nivelacion-vista",
+      "category": "pisos",
+      "description": "Piso de gran formato en colocación, con sistema de nivelación",
+      "prefix": "5603eaa7",
+      "detailIds": [
+        "piso-nivelacion-detalle"
+      ],
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piso-nivelacion-detalle",
+      "category": "pisos",
+      "description": "Detalle de juntas y niveladores durante la colocación del piso",
+      "prefix": "188cf567",
+      "detailOf": "piso-nivelacion-vista",
+      "visible": false,
+      "mediaId": null
+    },
+    {
+      "id": "piso-madera-1",
+      "category": "pisos",
+      "description": "Piso símil madera colocado a traba",
+      "prefix": "6a6911d8",
+      "detailIds": [
+        "piso-madera-2"
+      ],
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "librillo-parrilla",
+      "category": "piedra",
+      "description": "Estufa revestida en piedra librillo",
+      "prefix": "4b10a7f2",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "escalera-exterior",
+      "category": "escaleras",
+      "description": "Escalera exterior revestida",
+      "prefix": "fc5202f5",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "bano-bloques",
+      "category": "banos",
+      "description": "Baño con ducha en bloques de vidrio",
+      "prefix": "a62799f8",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "librillo-pared",
+      "category": "piedra",
+      "description": "Media pared en piedra librillo",
+      "prefix": "2287673f",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piscina-fondo",
+      "category": "piscinas",
+      "description": "Fondo de piscina en piedra",
+      "prefix": "d296fb87",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piso-madera-2",
+      "category": "pisos",
+      "description": "Detalle de colocación del piso símil madera",
+      "prefix": "e3784987",
+      "detailOf": "piso-madera-1",
+      "visible": false,
+      "mediaId": null
+    },
+    {
+      "id": "bano-marmol-blanco",
+      "category": "banos",
+      "description": "Baño en mármol blanco con nicho",
+      "prefix": "c3f1fd40",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "librillo-fachada",
+      "category": "piedra",
+      "description": "Fachada en piedra librillo",
+      "prefix": "3d6dfff4",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "bano-marmol-negro",
+      "category": "banos",
+      "description": "Pared símil mármol negro y dorado",
+      "prefix": "da6d276d",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piso-marmol-blanco",
+      "category": "pisos",
+      "description": "Piso gran formato símil mármol blanco",
+      "prefix": "75dba518",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "librillo-detalle",
+      "category": "piedra",
+      "description": "Piedra librillo, detalle",
+      "prefix": "4f0aadba",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piscina-obra",
+      "category": "piscinas",
+      "description": "Piscina revestida en piedra",
+      "prefix": "314fb499",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "bano-oxido",
+      "category": "banos",
+      "description": "Baño en gran formato símil óxido",
+      "prefix": "063f5054",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piso-pasillo-negro",
+      "category": "pisos",
+      "description": "Pasillo en mármol negro",
+      "prefix": "2059b37e",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piso-planta-abierta",
+      "category": "pisos",
+      "description": "Planta abierta en gran formato",
+      "prefix": "ccc626e3",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "bano-blanco-negro",
+      "category": "banos",
+      "description": "Baño blanco con detalle negro",
+      "prefix": "dd55bb52",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piso-blanco-brillo",
+      "category": "pisos",
+      "description": "Porcelanato blanco brillante",
+      "prefix": "9ae1b5a8",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "piso-gran-formato",
+      "category": "pisos",
+      "description": "Piso gran formato con vista al jardín",
+      "prefix": "21826db1",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "bano-oxido-2",
+      "category": "banos",
+      "description": "Pared símil óxido en gran formato",
+      "prefix": "5e6b78f5",
+      "visible": true,
+      "mediaId": null
+    },
+    {
+      "id": "proceso-piso",
+      "description": "Nivelación en piso",
+      "prefix": "4eea21c3",
+      "category": "pisos",
+      "visible": false,
+      "auxiliary": true,
+      "mediaId": null
+    },
+    {
+      "id": "proceso-pared",
+      "description": "Nivelación en pared",
+      "prefix": "1a2b69e2",
+      "category": "banos",
+      "visible": false,
+      "auxiliary": true,
+      "mediaId": null
+    },
+    {
+      "id": "proceso-cortes",
+      "description": "Cortes a medida",
+      "prefix": "73e5db53",
+      "category": "escaleras",
+      "visible": false,
+      "auxiliary": true,
+      "mediaId": null
+    }
+  ],
+  "locations": [
+    {
+      "id": "maldonado-ciudad",
+      "label": "Ciudad de Maldonado",
+      "file": "maldonado-ciudad.webp",
+      "position": "center 42%",
+      "source": "https://commons.wikimedia.org/wiki/File:Vista_posterior_de_la_Iglesia_Catedral_de_San_Fernando_de_Maldonado.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "mediaId": null,
+      "caption": ""
+    },
+    {
+      "id": "punta-del-este",
+      "label": "Punta del Este",
+      "file": "punta-del-este.webp",
+      "position": "center 52%",
+      "source": "https://commons.wikimedia.org/wiki/File:Vista_de_Punta_Del_Este,_desde_el_Faro_de_Punta_del_Este.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "mediaId": null,
+      "caption": ""
+    },
+    {
+      "id": "punta-ballena",
+      "label": "Punta Ballena",
+      "file": "punta-ballena.webp",
+      "position": "center 60%",
+      "source": "https://commons.wikimedia.org/wiki/File:Punta_Ballena,_Uruguay_(50127615111).jpg",
+      "license": "Dominio público",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Punta_Ballena,_Uruguay_(50127615111).jpg",
+      "mediaId": null,
+      "caption": ""
+    },
+    {
+      "id": "pan-de-azucar",
+      "label": "Pan de Azúcar",
+      "file": "pan-de-azucar.webp",
+      "position": "center 65%",
+      "source": "https://commons.wikimedia.org/wiki/File:AccesoPanDeAzucar.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "mediaId": null,
+      "caption": ""
+    },
+    {
+      "id": "piriapolis",
+      "label": "Piriápolis",
+      "file": "piriapolis.webp",
+      "position": "center 46%",
+      "source": "https://commons.wikimedia.org/wiki/File:Piriapolis.JPG",
+      "license": "Dominio público",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Piriapolis.JPG",
+      "mediaId": null,
+      "caption": ""
+    },
+    {
+      "id": "jose-ignacio",
+      "label": "José Ignacio",
+      "file": "jose-ignacio.webp",
+      "position": "left 50%",
+      "source": "https://commons.wikimedia.org/wiki/File:Playa_de_Jos%C3%A9_Ignacio.JPG",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "mediaId": null,
+      "caption": ""
+    },
+    {
+      "id": "la-capuera",
+      "label": "La Capuera",
+      "file": "la-capuera.webp",
+      "position": "center 53%",
+      "source": "https://commons.wikimedia.org/wiki/File:Laguna_del_sauce_2.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "caption": "Entorno: Laguna del Sauce",
+      "mediaId": null
+    }
+  ],
+  "hero": {
+    "mediaId": null,
+    "kind": "illustrative",
+    "alt": "Imagen ilustrativa: dos instaladores de espalda colocando baldosas de gran formato con niveladores en el interior de una vivienda moderna."
+  },
+  "dimensions": {
+    "piso-marmol-negro": {
+      "width": 1200,
+      "height": 1600
+    },
+    "librillo-parrillero": {
+      "width": 880,
+      "height": 1173
+    },
+    "piscina-escalera": {
+      "width": 853,
+      "height": 1516
+    },
+    "bano-madera-oxido": {
+      "width": 2000,
+      "height": 2667
+    },
+    "piso-nivelacion-vista": {
+      "width": 1200,
+      "height": 1600
+    },
+    "piso-nivelacion-detalle": {
+      "width": 1200,
+      "height": 1600
+    },
+    "piso-madera-1": {
+      "width": 1242,
+      "height": 1600
+    },
+    "librillo-parrilla": {
+      "width": 2000,
+      "height": 1500
+    },
+    "escalera-exterior": {
+      "width": 880,
+      "height": 660
+    },
+    "bano-bloques": {
+      "width": 2000,
+      "height": 3556
+    },
+    "librillo-pared": {
+      "width": 2000,
+      "height": 1500
+    },
+    "piscina-fondo": {
+      "width": 1536,
+      "height": 2048
+    },
+    "piso-madera-2": {
+      "width": 1230,
+      "height": 1600
+    },
+    "bano-marmol-blanco": {
+      "width": 1265,
+      "height": 1570
+    },
+    "librillo-fachada": {
+      "width": 880,
+      "height": 660
+    },
+    "bano-marmol-negro": {
+      "width": 1220,
+      "height": 1600
+    },
+    "piso-marmol-blanco": {
+      "width": 1266,
+      "height": 1600
+    },
+    "librillo-detalle": {
+      "width": 1536,
+      "height": 2048
+    },
+    "piscina-obra": {
+      "width": 1152,
+      "height": 2048
+    },
+    "bano-oxido": {
+      "width": 2000,
+      "height": 2667
+    },
+    "piso-pasillo-negro": {
+      "width": 900,
+      "height": 1600
+    },
+    "piso-planta-abierta": {
+      "width": 1600,
+      "height": 1200
+    },
+    "bano-blanco-negro": {
+      "width": 1040,
+      "height": 1600
+    },
+    "piso-blanco-brillo": {
+      "width": 960,
+      "height": 804
+    },
+    "piso-gran-formato": {
+      "width": 1600,
+      "height": 1200
+    },
+    "bano-oxido-2": {
+      "width": 2000,
+      "height": 2667
+    },
+    "proceso-piso": {
+      "width": 1230,
+      "height": 1600
+    },
+    "proceso-pared": {
+      "width": 2000,
+      "height": 2667
+    },
+    "proceso-cortes": {
+      "width": 900,
+      "height": 1600
+    }
+  },
+  "heroImage": {
+    "desktop": {
+      "small": {
+        "src": "/images/hero/instaladores-baldosas-v1-desktop-small.webp",
+        "width": 1280,
+        "height": 720
+      },
+      "large": {
+        "src": "/images/hero/instaladores-baldosas-v1-desktop-large.webp",
+        "width": 1672,
+        "height": 941
+      }
+    },
+    "mobile": {
+      "small": {
+        "src": "/images/hero/instaladores-baldosas-v1-mobile-small.webp",
+        "width": 640,
+        "height": 400
+      },
+      "large": {
+        "src": "/images/hero/instaladores-baldosas-v1-mobile-large.webp",
+        "width": 1280,
+        "height": 800
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # ConstruYENDO · construyendo.uy
 
-Portafolio estático de ConstruYENDO Revestimientos en Maldonado. React + Vite + TypeScript + Tailwind CSS. Sin backend ni servicios de seguimiento. El preparador de presupuestos arma un mensaje localmente; el visitante lo abre, revisa y envía desde WhatsApp.
+Portafolio estático de ConstruYENDO Revestimientos en Maldonado. React + Vite + TypeScript + Tailwind CSS. El sitio público es estático y la administración de imágenes utiliza un servicio independiente. Sin servicios de seguimiento. El preparador de presupuestos arma un mensaje localmente; el visitante lo abre, revisa y envía desde WhatsApp.
 
 Versión pública autorizada por el usuario el 29/10/2026. Sitio: https://santi-sv.github.io/construyendo-uy/ · Repositorio: https://github.com/Santi-sv/construyendo-uy.
 
@@ -126,3 +126,11 @@ Se revisaron las referencias de https://www.brasilcode.com.br/35-botoes-css-com-
 ## Fondo cartográfico de cobertura
 
 La tarjeta de cobertura utiliza `public/images/maps/maldonado-calles.svg`: calles y avenidas reales de la ciudad de Maldonado, a partir de OpenStreetMap, simplificadas y estilizadas como un fondo discreto que cubre toda la tarjeta. No es un mapa nacional. El plano es estático y no utiliza librerías de mapas, teselas, cookies ni consultas a terceros durante la visita. La atribución se muestra al pie de la tarjeta; los datos y su licencia ODbL se registran en `public/THIRD_PARTY_NOTICES.txt`. El extracto geométrico y la procedencia se conservan localmente en `assets/maps/`.
+
+## Administrador de imágenes
+
+Panel del equipo: https://construyendo-uy-equipo.sam777-varela.chatgpt.site/admin. Está alojado en Sites, sobre un Worker de Cloudflare con D1 y R2. La web pública continúa en GitHub Pages; `src/data/cms-hosting.json` define el servicio del que lee las imágenes y los datos publicados. `VITE_CMS_ORIGIN` permite sobrescribir ese origen al compilar. En desarrollo se usa el servicio local integrado a Vite.
+
+Administra las fotos de obras, la portada y las imágenes de localidades mediante un código compartido, que se puede cambiar en Configuración. Usa autenticación del lado del servidor, borradores y publicación separados; no valida la clave en el navegador ni guarda credenciales en localStorage. El código y sus registros privados no forman parte del repositorio ni de la compilación pública.
+
+`server/README.md` describe el inicio local, las pruebas y la configuración del servicio. `cms-hosted/` mantiene el checkout independiente del panel, con su identidad de alojamiento y las migraciones de D1. Para sincronizar cambios se usa `node scripts/prepare-cms-hosted.mjs` sin copiar datos privados. Las nuevas publicaciones siguen requiriendo un pedido del usuario.

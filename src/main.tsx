@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import { loadManagedContent } from './lib/managedContent'
+import { applyManagedContent } from './lib/gallery'
 import './styles.css'
 import './brand.css'
 import './motion.css'
@@ -18,6 +19,10 @@ import './payment-panel.css'
 import './contact-morph.css'
 import './header.css'
 import './action-motion.css'
+
+const content = await loadManagedContent()
+if (content) applyManagedContent(content)
+const { default: App } = await import('./App')
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

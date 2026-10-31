@@ -1,19 +1,22 @@
 import { Icon } from './Icons'
+import { managedHero } from '../lib/managedContent'
 import heroImage from '../data/hero-image.json'
 import { freeVisitPolicy } from '../lib/quotes'
 import { assetUrl } from '../lib/assets'
 
-const desktopSources = `${assetUrl(heroImage.desktop.small.src)} ${heroImage.desktop.small.width}w, ${assetUrl(heroImage.desktop.large.src)} ${heroImage.desktop.large.width}w`
-const mobileSources = `${assetUrl(heroImage.mobile.small.src)} ${heroImage.mobile.small.width}w, ${assetUrl(heroImage.mobile.large.src)} ${heroImage.mobile.large.width}w`
-
 export function Hero() {
+  const managed = managedHero()
+  const image = managed?.image ?? heroImage
+  const source = (value: string) => /^https?:/.test(value) ? value : assetUrl(value)
+  const desktopSources = `${source(image.desktop.small.src)} ${image.desktop.small.width}w, ${source(image.desktop.large.src)} ${image.desktop.large.width}w`
+  const mobileSources = `${source(image.mobile.small.src)} ${image.mobile.small.width}w, ${source(image.mobile.large.src)} ${image.mobile.large.width}w`
   return <section id="inicio" className="cinema-hero cinema-hero--workscene" aria-labelledby="hero-title">
     <figure className="workscene-media">
       <picture>
-        <source media="(max-width: 767px)" srcSet={mobileSources} sizes="100vw" width={heroImage.mobile.large.width} height={heroImage.mobile.large.height} />
-        <img className="workscene-image" src={assetUrl(heroImage.desktop.large.src)} srcSet={desktopSources} sizes="100vw" width={heroImage.desktop.large.width} height={heroImage.desktop.large.height} alt="Imagen ilustrativa: dos instaladores de espalda colocando baldosas de gran formato con niveladores en el interior de una vivienda moderna." fetchPriority="high" decoding="async" />
+        <source media="(max-width: 767px)" srcSet={mobileSources} sizes="100vw" width={image.mobile.large.width} height={image.mobile.large.height} />
+        <img className="workscene-image" src={source(image.desktop.large.src)} srcSet={desktopSources} sizes="100vw" width={image.desktop.large.width} height={image.desktop.large.height} alt={managed?.alt ?? "Imagen ilustrativa: dos instaladores de espalda colocando baldosas de gran formato con niveladores en el interior de una vivienda moderna."} fetchPriority="high" decoding="async" />
       </picture>
-      <figcaption className="workscene-image-caption">Imagen ilustrativa</figcaption>
+      <figcaption className="workscene-image-caption">{managed?.kind === 'real' ? 'Obra real' : 'Imagen ilustrativa'}</figcaption>
     </figure>
     <div className="cinema-copy container">
       <div className="cinema-eyebrow"><span className="status-dot" />REVESTIMIENTOS / MALDONADO, UY<span className="cinema-edition">OFICIO EN CADA DETALLE</span></div>

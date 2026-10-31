@@ -11,9 +11,10 @@ import { PortfolioExplorer } from './components/PortfolioExplorer'
 import type { GalleryMode } from './components/PortfolioExplorer'
 import { usePageProgress, useScrollReveal } from './hooks/useMotion'
 import { Lightbox } from './components/Lightbox'
-import { categories, imageDimensions, imageSources, imageUrl, projects, savedCategory, visitMessage, whatsappUrl, withPhotoDetails } from './lib/gallery'
+import { categories, findProject, imageDimensions, imageSources, imageUrl, projects, savedCategory, visitMessage, whatsappUrl, withPhotoDetails } from './lib/gallery'
 import type { Category, Project } from './lib/gallery'
 import processPhotos from './data/process.json'
+import { adminUrl } from './lib/managedContent'
 
 const steps = [
   { title: 'Nos escribís', text: 'Contanos por WhatsApp qué querés revestir y en qué zona. Si tenés fotos del lugar, mandalas.' },
@@ -21,8 +22,8 @@ const steps = [
   { title: 'Te pasamos el presupuesto', text: 'Con el trabajo a la vista acordamos el precio, la forma de pago y los plazos.' },
   { title: 'Colocamos el revestimiento', text: 'Trabajamos en la preparación, colocación y terminación del revestimiento, cuidando cada detalle.' },
 ]
-const processProjects: Project[] = processPhotos.map((photo, index) => ({ ...photo, category: index === 1 ? 'banos' : index === 2 ? 'escaleras' : 'pisos' }))
-const projectById = (id: string) => projects.find((photo) => photo.id === id)!
+const processProjects: Project[] = processPhotos.map((photo, index) => (findProject(photo.id) ?? { ...photo, category: index === 1 ? 'banos' : index === 2 ? 'escaleras' : 'pisos' }))
+const projectById = (id: string) => findProject(id)!
 const workflowPhotos = [processProjects[0], processProjects[1], projectById('bano-madera-oxido')]
 const areaPhotos = ['piscina-escalera', 'escalera-exterior', 'librillo-fachada'].map(projectById)
 const contactPhotos = ['bano-madera-oxido', 'librillo-pared', 'piso-marmol-negro'].map(projectById)
@@ -93,7 +94,7 @@ function App() {
           <div className="section-heading" data-reveal="up"><div><span className="eyebrow section-kicker"><span className="small-line" />NUESTRO PORTAFOLIO</span><h2>Nuestros trabajos<span className="heading-dot">.</span></h2></div><p>Obras reales. Materiales que se sienten.<br className="desktop-break" /> Deslizá para explorar o tocá para ver el detalle.</p></div>
           <PortfolioExplorer category={category} mode={galleryMode} onCategoryChange={setCategory} onModeChange={setGalleryMode} />
           <div id="portfolio-results" className="portfolio-results" role="region" aria-label="Trabajos seleccionados">
-          {galleryMode === 'slides' ? <div className="showcase-reveal" data-reveal="up"><PhotoCarousel key={category} photos={filtered} label="Nuestros trabajos" variant="showcase" onOpen={openPhotos} /></div> : <div className="gallery-grid" ref={galleryRef}>{filtered.map((project, index) => (
+          {filtered.length === 0 ? <p className="gallery-empty">Todavía no hay fotos para mostrar en esta categoría.</p> : galleryMode === 'slides' ? <div className="showcase-reveal" data-reveal="up"><PhotoCarousel key={category} photos={filtered} label="Nuestros trabajos" variant="showcase" onOpen={openPhotos} /></div> : <div className="gallery-grid" ref={galleryRef}>{filtered.map((project, index) => (
             <button type="button" className="project-card" style={{ gridRowEnd: `span ${Math.ceil((masonry.columnWidth * imageDimensions(project.id).height / imageDimensions(project.id).width + masonry.gap) / (masonry.rowHeight + masonry.gap))}` }} key={project.id} onClick={() => openPhotos(filtered, index)} aria-label={`Ver foto: ${project.description}`}>
               <img src={imageUrl(project.id, 1400)} srcSet={imageSources(project.id)} sizes="(max-width: 767px) 46vw, (max-width: 1100px) 30vw, 24vw" {...imageDimensions(project.id)} alt={project.description} loading="lazy" decoding="async" />
               <span className="project-expand"><Icon name="expand" size={17} /></span>
@@ -126,7 +127,7 @@ function App() {
         <ContactSection photos={contactPhotos} onOpen={openPhotos} />
       </main>
 
-      <footer className="site-footer"><div className="container footer-inner"><a href="#inicio" aria-label="ConstruYENDO Revestimientos, volver al inicio"><Brand /></a><p>Revestimientos <span>·</span> Maldonado, Uruguay</p><a className="footer-domain" href="#inicio">Volver al inicio<Icon name="arrow" size={15} /></a></div></footer>
+      <footer className="site-footer"><div className="container footer-inner"><a href="#inicio" aria-label="ConstruYENDO Revestimientos, volver al inicio"><Brand /></a><p>Revestimientos <span>·</span> Maldonado, Uruguay</p>{adminUrl && <a className="team-access" href={adminUrl}>Acceso del equipo</a>}<a className="footer-domain" href="#inicio">Volver al inicio<Icon name="arrow" size={15} /></a></div></footer>
       <a href={whatsappUrl(visitMessage)} target="_blank" rel="noopener noreferrer" className="floating-whatsapp gradient-orbit" aria-label="Consultar presupuesto por WhatsApp"><Icon name="whatsapp" size={28} /><span>Hablemos de tu obra</span></a>
       {lightbox && <Lightbox photos={lightbox.photos} index={lightbox.index} onIndexChange={(index) => setLightbox((previous) => previous ? { ...previous, index } : null)} onClose={() => setLightbox(null)} />}
     </>

@@ -13,3 +13,12 @@ dist/
 .codex/
 .agents/
 .aws/
+
+# Private administration runtime and build artifacts.
+.cms-build/
+.cms-dist/
+.cms-data/
+.dev.vars*
+
+# Independent source checkout for the hosted administrator.
+/cms-hosted/

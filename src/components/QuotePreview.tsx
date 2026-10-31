@@ -67,7 +67,7 @@ export function QuotePreview({ service, zoneId, location, freeVisit, zoneChosen,
         </button>
       </div>
 
-      {placePhoto && <p className="brief-image-source"><span>Foto de localidad:</span><a href={placePhoto.source} target="_blank" rel="noopener noreferrer">Wikimedia Commons</a><span>·</span><a href={placePhoto.licenseUrl} target="_blank" rel="noopener noreferrer">{placePhoto.license}</a><span>· adaptada</span></p>}
+      {placePhoto && <p className="brief-image-source"><span>Foto de localidad:</span>{placePhoto.source ? <><a href={placePhoto.source} target="_blank" rel="noopener noreferrer">Wikimedia Commons</a><span>·</span><a href={placePhoto.licenseUrl} target="_blank" rel="noopener noreferrer">{placePhoto.license}</a><span>· adaptada</span></> : <span>{placePhoto.credit}</span>}</p>}
 
       {hasDraft ? <div className={`brief-message ${ready ? 'is-ready' : ''}`}>
         <div className="brief-message-heading"><span><Icon name="whatsapp" size={17} />{ready ? 'TU MENSAJE ESTÁ LISTO' : 'TU MENSAJE TOMA FORMA'}</span>{ready && <button type="button" onClick={copyMessage}><Icon name={copyStatus === 'copied' ? 'check' : 'copy'} size={15} /><span>{copyStatus === 'copied' ? 'Copiado' : 'Copiar'}</span></button>}</div>

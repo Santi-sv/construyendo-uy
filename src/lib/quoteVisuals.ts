@@ -1,3 +1,4 @@
+import { managedLocation } from './managedContent'
 import { imageUrl } from './gallery'
 import { assetUrl } from './assets'
 import locationPhotos from '../data/quote-locations.json'
@@ -10,6 +11,7 @@ export type QuotePhoto = {
   license?: string
   licenseUrl?: string
   caption?: string
+  credit?: string
 }
 
 const servicePhotos = {
@@ -29,6 +31,8 @@ export function servicePhoto(service: string): QuotePhoto | undefined {
 
 export function locationPhoto(zoneId: string): QuotePhoto | undefined {
   if (!Object.hasOwn(locationPhotos, zoneId)) return undefined
+  const managed = managedLocation(zoneId)
+  if (managed) return { src: managed.image.small, position: locationPhotos[zoneId as keyof typeof locationPhotos].position, caption: managed.caption || undefined, source: managed.source, license: managed.license, licenseUrl: managed.licenseUrl, credit: managed.mediaId ? 'ConstruYENDO' : undefined }
   const { file, ...photo } = locationPhotos[zoneId as keyof typeof locationPhotos]
   return { ...photo, src: assetUrl(`images/localidades/${file}`) }
 }

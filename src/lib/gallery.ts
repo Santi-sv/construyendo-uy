@@ -1,3 +1,4 @@
+import type { ManagedContent, ManagedImage } from './managedContent'
 import projectData from '../data/projects.json'
 import dimensionData from '../data/dimensions.json'
 import { assetUrl } from './assets'
@@ -12,9 +13,17 @@ export const categories = [
 ] as const
 
 export type Category = typeof categories[number]['id']
-export type Project = Omit<typeof projectData[number], 'category'> & { category: Exclude<Category, 'todos'> }
-const allPhotos = projectData as Project[]
-export const projects = allPhotos.filter((photo) => !photo.detailOf)
+export type Project = { id: string; category: Exclude<Category, 'todos'>; description: string; prefix?: string; detailIds?: string[]; detailOf?: string; visible?: boolean; auxiliary?: boolean }
+let allPhotos = projectData as Project[]
+const managedImages: Record<string, ManagedImage> = {}
+export let projects = allPhotos.filter((photo) => !photo.detailOf)
+export const findProject = (id: string) => allPhotos.find(photo => photo.id === id)
+export function applyManagedContent(content: ManagedContent) {
+  if (projectData.some(photo => !content.photos.some(item => item.id === photo.id))) return
+  allPhotos = content.photos
+  projects = allPhotos.filter(photo => photo.visible && !photo.detailOf && !photo.auxiliary)
+  for (const photo of content.photos) { managedImages[photo.id] = photo.image; dimensions[photo.id] = { width: photo.image.width, height: photo.image.height } }
+}
 export function withPhotoDetails(photos: Project[]) {
   return photos.flatMap((photo) => [photo, ...(photo.detailIds ?? []).flatMap((id) => {
     const detail = allPhotos.find((item) => item.id === id && item.detailOf === photo.id)
@@ -22,9 +31,9 @@ export function withPhotoDetails(photos: Project[]) {
   })])
 }
 export const dimensions: Record<string, { width: number; height: number }> = dimensionData
-export const imageUrl = (id: string, size: 640 | 1400) => assetUrl(`images/retocadas/${id}-${size === 640 ? '640' : 'grande'}.webp`)
+export const imageUrl = (id: string, size: 640 | 1400) => managedImages[id]?.[size === 640 ? 'small' : 'large'] ?? assetUrl(`images/retocadas/${id}-${size === 640 ? '640' : 'grande'}.webp`)
 export const imageDimensions = (id: string) => dimensions[id] ?? { width: 1050, height: 1400 }
-export const imageSources = (id: string) => `${imageUrl(id, 640)} ${Math.min(640, imageDimensions(id).width)}w, ${imageUrl(id, 1400)} ${imageDimensions(id).width}w`
+export const imageSources = (id: string) => `${imageUrl(id, 640)} ${managedImages[id]?.smallWidth ?? Math.min(640, imageDimensions(id).width)}w, ${imageUrl(id, 1400)} ${imageDimensions(id).width}w`
 const contactNumber = '59898375863'
 export const phoneUrl = `tel:+${contactNumber}`
 export const whatsappUrl = (message: string) => `https://wa.me/${contactNumber}?text=${encodeURIComponent(message)}`

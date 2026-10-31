@@ -280,3 +280,6 @@ h2 {
 .lightbox-brand .brand-name{font-size:20px;letter-spacing:-.8px}
 .lightbox-brand .brand-subtitle{font-size:4px;letter-spacing:2.7px}
 .lightbox-brand .brand-tagline{font-size:3.5px;letter-spacing:.3px}
+
+.team-access{font-size:9px;color:#9a835f;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.gallery-empty{padding:55px 20px;text-align:center;color:#8d795c;font-size:14px;line-height:1.8;border:1px solid #dfcfb9;border-radius:8px;background:#f9f4ec}
