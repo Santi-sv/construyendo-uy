@@ -9,7 +9,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "images": "node scripts/prepare-images.mjs",
     "photos:develop": "python3 scripts/develop-photos.py",
-    "test": "node scripts/check-quotes.mjs && node scripts/check-contact-launch.mjs && node --test server/api.test.mjs",
+    "test": "node scripts/check-quotes.mjs && node scripts/check-contact-launch.mjs && node scripts/check-privacy.mjs && node --test server/api.test.mjs",
     "check": "tsc -b",
     "cms:dev": "vite --host 127.0.0.1",
     "cms:setup": "node server/setup.mjs",

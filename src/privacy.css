@@ -1,0 +1,32 @@
+.footer-inner{flex-wrap:wrap}
+.privacy-footer-link{display:inline-flex;align-items:center;gap:7px;padding:8px 0;background:transparent;color:#6c5234;font:inherit;font-size:11px;font-weight:650;text-align:left;min-height:44px}
+.privacy-footer-link>svg{width:17px;height:17px}
+.privacy-banner{position:fixed;z-index:80;left:24px;bottom:24px;width:min(660px,calc(100% - 48px));display:grid;grid-template-columns:44px 1fr;gap:15px 17px;background:#1d201e;color:#f8f5ef;border:1px solid #be9969;border-radius:14px;padding:23px;box-shadow:0 12px 45px #15151138;animation:privacy-arrive .3s ease-out}
+.privacy-symbol{display:grid;place-items:center;width:44px;height:44px;border:1px solid #d7b38a66;border-radius:13px;color:#e1bc90;background:#e1bc9012}
+.privacy-kicker{display:block;font-size:9px;font-weight:750;letter-spacing:1.6px;color:#d9b88f;line-height:1.5}
+.privacy-banner h2{font-family:inherit;font-size:20px;line-height:1.35;letter-spacing:-.5px;text-transform:none;margin:5px 0 9px;font-weight:700}
+.privacy-banner p{font-size:12px;color:#d5d3ca;line-height:1.8;margin:0}
+.privacy-actions{display:flex;flex-wrap:wrap;gap:9px;grid-column:1/-1;margin-top:2px}
+.privacy-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:10px 15px;border:1px solid;border-radius:6px;font:inherit;font-size:11px;font-weight:700;line-height:1.5;transition:transform .18s,box-shadow .18s,background .18s;cursor:pointer}
+.privacy-button:hover{transform:translateY(-1px);box-shadow:0 3px 9px #0002}
+.privacy-button--outline{background:transparent;border-color:#b1a58d;color:#f3ebde}
+.privacy-button--gold{background:#dfbc94;border-color:#dfbc94;color:#29251e}
+.privacy-dialog{width:min(580px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:28px;background:#faf8f3;color:#292c27;border:1px solid #c5a47a;border-radius:14px;box-shadow:0 20px 90px #0005}
+.privacy-dialog::backdrop{background:#111812aa;backdrop-filter:blur(4px)}
+.privacy-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:16px}
+.privacy-dialog .privacy-kicker{color:#88623b;font-size:8px}
+.privacy-dialog h2{font-family:inherit;font-size:27px;letter-spacing:-.8px;line-height:1.4;font-weight:700;text-transform:none;margin-top:7px}
+.privacy-close{display:grid;place-items:center;flex-shrink:0;min-width:40px;min-height:40px;border:1px solid #d5c8b3;background:#eee6d8;color:#56482f;border-radius:50%;cursor:pointer}
+.privacy-dialog>p,.privacy-option p,.privacy-details p{font-size:12px;line-height:1.85;color:#686b61;margin:0}
+.privacy-option{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:20px 0;margin:0;border-bottom:1px solid #dfd9ce}
+.privacy-option h3,.privacy-details h3{font-size:13px;letter-spacing:0;line-height:1.6;font-weight:750;color:#34382e;margin:0 0 5px}
+.privacy-required{flex-shrink:0;white-space:nowrap;font-size:9px;font-weight:700;color:#367249;background:#e5f0e5;border:1px solid #bdd7bf;padding:6px 9px;border-radius:20px}
+.privacy-option--selectable{cursor:pointer}
+.privacy-option input{width:21px;height:21px;flex-shrink:0;accent-color:#987040;margin:0}
+.privacy-details{padding:20px 0 22px}
+.privacy-details h3:not(:first-child){margin-top:17px}
+.privacy-dialog .privacy-actions{border-top:1px solid #dfd9ce;padding-top:20px;justify-content:space-between}
+.privacy-dialog .privacy-button--outline{color:#514832;border-color:#bbae98}
+@keyframes privacy-arrive{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(max-width:767px){.privacy-banner{left:12px;bottom:12px;width:calc(100% - 24px);padding:19px;gap:12px;border-radius:12px;grid-template-columns:36px 1fr}.privacy-symbol{width:36px;height:36px;border-radius:10px}.privacy-symbol>svg{width:24px;height:24px}.privacy-banner h2{font-size:18px}.privacy-banner p{font-size:11px}.privacy-kicker{font-size:8px}.privacy-banner .privacy-actions{display:grid;grid-template-columns:1fr 1fr;width:100%}.privacy-banner .privacy-button--gold{grid-column:1/-1}.privacy-button{font-size:11px}.privacy-dialog{padding:23px 20px}.privacy-option{gap:14px}.privacy-required{font-size:8px;padding:5px 7px}.privacy-dialog>p,.privacy-option p,.privacy-details p{font-size:11px}.privacy-footer-link{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.privacy-banner{animation:none}.privacy-button{transition:none}.privacy-button:hover{transform:none}}

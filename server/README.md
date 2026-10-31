@@ -1,6 +1,6 @@
 # Administración privada de ConstruYENDO
 
-Dirección del panel: https://santi-sv.github.io/construyendo-uy/admin.html. GitHub Pages aloja la interfaz y la web institucional. El servicio seguro de acceso e imágenes continúa en Sites, con D1 y R2, en https://construyendo-uy-equipo.sam777-varela.chatgpt.site. Proyecto del servicio: `appgprj_6ae5409ab6bc8191978a878f69331d02`.
+Dirección configurada del panel: https://construyendo.uy/admin.html. GitHub Pages aloja la interfaz y la web institucional. El servicio seguro de acceso e imágenes continúa en Sites, con D1 y R2, en https://construyendo-uy-equipo.sam777-varela.chatgpt.site. Proyecto del servicio: `appgprj_6ae5409ab6bc8191978a878f69331d02`. La activación del dominio y sus pendientes se describen en `../deployment/DOMINIO.md`.
 
 Los accesos antiguos al servicio (`/`, `/admin`, `/admin/` y `/admin.html`) redirigen a GitHub Pages, con una versión de URL que evita la caché del HTML anterior. No se trasladan parámetros ni credenciales de la solicitud a la redirección. Las rutas de API e imágenes mantienen sus controles de acceso.
 
@@ -31,12 +31,12 @@ Esto no reemplaza una revisión independiente de seguridad ni verifica la config
 
 ## Alojamiento de producción
 
-GitHub Pages sirve el sitio público y el panel en `https://santi-sv.github.io/construyendo-uy/admin.html`. La autenticación y el almacenamiento requieren un servicio separado. El servicio utiliza un Worker ESM de Cloudflare con D1 y R2, administrados por Sites.
+GitHub Pages sirve el sitio público y el panel en `https://construyendo.uy/admin.html`. La autenticación y el almacenamiento requieren un servicio separado. El servicio utiliza un Worker ESM de Cloudflare con D1 y R2, administrados por Sites.
 
 `npm run cms:build` genera `.cms-dist/server/index.js`, que incluye la interfaz administrativa y las rutas del servicio. La configuración de producción utiliza estos pasos; para futuras actualizaciones se conserva el proyecto existente:
 
 - Proveer bindings privados `DB` (D1) y `BUCKET` (R2), y aplicar `server/schema.sql`.
-- Configurar `ADMIN_ORIGIN` con el origen HTTPS del panel y `PUBLIC_SITE_URL` con `https://santi-sv.github.io/construyendo-uy/`.
+- Configurar `ADMIN_ORIGIN` con el origen HTTPS del servicio y `PUBLIC_SITE_URL` con `https://construyendo.uy/`.
 - Establecer `BOOTSTRAP_CREDENTIAL` como secreto del servidor: un registro producido por `hashCode` de `auth.mjs`, nunca el código en texto ni una variable `VITE_`. No existe una pantalla pública de inicialización.
 - Desplegar y probar el Worker real, los bindings, las cookies, las cargas y el cambio de código. La compilación local no prueba por sí sola el entorno Cloudflare ni los límites de su plan.
 - Compilar el sitio público y el panel con `VITE_CMS_ORIGIN` igual al origen HTTPS del servicio. Eso habilita la lectura del contenido publicado y la conexión segura del panel. El enlace «Acceso del equipo» apunta al `admin.html` del propio GitHub Pages.

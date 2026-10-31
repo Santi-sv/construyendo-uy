@@ -2,9 +2,9 @@
 
 Portafolio estático de ConstruYENDO Revestimientos en Maldonado. React + Vite + TypeScript + Tailwind CSS. El sitio público es estático y la administración de imágenes utiliza un servicio independiente. Sin servicios de seguimiento. El preparador de presupuestos arma un mensaje localmente; el visitante lo abre, revisa y envía desde WhatsApp.
 
-Versión pública autorizada por el usuario el 29/10/2026. Sitio: https://santi-sv.github.io/construyendo-uy/ · Repositorio: https://github.com/Santi-sv/construyendo-uy.
+Versión pública autorizada por el usuario el 29/10/2026. El 30/10/2026 se configuró https://construyendo.uy/ como dominio propio de GitHub Pages. La propagación DNS y el certificado HTTPS se siguen en `deployment/DOMINIO.md`. Repositorio: https://github.com/Santi-sv/construyendo-uy.
 
-Panel del equipo: https://santi-sv.github.io/construyendo-uy/admin.html. La interfaz se aloja también en GitHub Pages; el acceso por código, los borradores y las imágenes se procesan en el servicio seguro descrito en `server/README.md`. El código no forma parte de los archivos públicos.
+Panel del equipo: https://construyendo.uy/admin.html. La interfaz se aloja también en GitHub Pages; el acceso por código, los borradores y las imágenes se procesan en el servicio seguro descrito en `server/README.md`. El código no forma parte de los archivos públicos.
 
 Se puede seguir trabajando localmente sin publicar cada cambio. El despliegue de GitHub Pages se ejecuta manualmente desde Actions.
 
@@ -117,7 +117,7 @@ npm run build -- --base=/construyendo-uy/
 npm run preview -- --base=/construyendo-uy/
 ```
 
-Las rutas de las fotos, el hero y el contacto descargable usan `import.meta.env.BASE_URL`; los enlaces entre secciones usan anclas. Los metadatos y el sitemap corresponden a la dirección pública de GitHub Pages. No se ha vinculado un dominio propio. La configuración de Vercel se conserva para una futura migración autorizada por el usuario.
+Las rutas de las fotos, el hero y el contacto descargable usan `import.meta.env.BASE_URL`; los enlaces entre secciones usan anclas. El workflow obtiene la ruta de `actions/configure-pages`, por lo que compila en `/` para el dominio propio. Los metadatos, el sitemap y el contacto apuntan a `https://construyendo.uy/`. La configuración de Vercel se conserva para una futura migración autorizada por el usuario.
 
 ## Navegación y respuestas de los botones
 
@@ -131,8 +131,14 @@ La tarjeta de cobertura utiliza `public/images/maps/maldonado-calles.svg`: calle
 
 ## Administrador de imágenes
 
-Panel del equipo: https://santi-sv.github.io/construyendo-uy/admin.html. La interfaz está alojada en GitHub Pages. El enlace anterior del panel redirige automáticamente a Pages; el servicio de autenticación e imágenes continúa sobre un Worker de Cloudflare con D1 y R2. `src/data/cms-hosting.json` define el servicio; `VITE_CMS_ORIGIN` permite sobrescribir ese origen al compilar. En desarrollo se usa el servicio local integrado a Vite.
+Panel del equipo: https://construyendo.uy/admin.html. La interfaz está alojada en GitHub Pages. El enlace anterior del panel redirige al dominio configurado; el servicio de autenticación e imágenes continúa sobre un Worker de Cloudflare con D1 y R2. `src/data/cms-hosting.json` define el servicio; `VITE_CMS_ORIGIN` permite sobrescribir ese origen al compilar. En desarrollo se usa el servicio local integrado a Vite.
 
 Administra las fotos de obras, la portada y las imágenes de localidades mediante un código compartido, que se puede cambiar en Configuración. Usa autenticación del lado del servidor, borradores y publicación separados; no valida la clave en el navegador ni guarda credenciales en localStorage. El código y sus registros privados no forman parte del repositorio ni de la compilación pública.
 
 `server/README.md` describe el inicio local, las pruebas y la configuración del servicio. `cms-hosted/` mantiene el checkout independiente del panel, con su identidad de alojamiento y las migraciones de D1. Para sincronizar cambios se usa `node scripts/prepare-cms-hosted.mjs` sin copiar datos privados. Las nuevas publicaciones siguen requiriendo un pedido del usuario.
+
+## Cookies y seguridad
+
+La web permite aceptar preferencias, usar solo las necesarias o configurar la elección desde «Cookies y privacidad». La categoría de trabajos se conserva únicamente con consentimiento y se elimina al revocarlo. La elección se guarda durante 180 días en una cookie propia, Secure en producción y sin datos de sesión ni de contacto. No se incorporaron analítica ni publicidad.
+
+La política CSP protege los recursos de la web y del panel. La compilación del panel bloquea el acceso por HTTP. `scripts/check-privacy.mjs` verifica consentimiento, revocación, vencimiento y atributos seguros; se incluye en `npm test`. La revisión y los pendientes del proveedor se describen en `deployment/SEGURIDAD.md`.

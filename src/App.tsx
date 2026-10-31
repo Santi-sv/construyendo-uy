@@ -15,6 +15,8 @@ import { categories, findProject, imageDimensions, imageSources, imageUrl, proje
 import type { Category, Project } from './lib/gallery'
 import processPhotos from './data/process.json'
 import { adminUrl } from './lib/managedContent'
+import { CookiePreferences } from './components/CookiePreferences'
+import { privacyChanged, rememberCategory } from './lib/privacy'
 
 const steps = [
   { title: 'Nos escribís', text: 'Contanos por WhatsApp qué querés revestir y en qué zona. Si tenés fotos del lugar, mandalas.' },
@@ -63,7 +65,10 @@ function App() {
   }, [galleryMode])
 
   useEffect(() => {
-    try { localStorage.setItem('construyendo:categoria', category) } catch { /* Private browsing may disable storage. */ }
+    const save = () => rememberCategory(category)
+    save()
+    window.addEventListener(privacyChanged, save)
+    return () => window.removeEventListener(privacyChanged, save)
   }, [category])
 
 
@@ -127,7 +132,7 @@ function App() {
         <ContactSection photos={contactPhotos} onOpen={openPhotos} />
       </main>
 
-      <footer className="site-footer"><div className="container footer-inner"><a href="#inicio" aria-label="ConstruYENDO Revestimientos, volver al inicio"><Brand /></a><p>Revestimientos <span>·</span> Maldonado, Uruguay</p>{adminUrl && <a className="team-access" href={adminUrl}>Acceso del equipo</a>}<a className="footer-domain" href="#inicio">Volver al inicio<Icon name="arrow" size={15} /></a></div></footer>
+      <footer className="site-footer"><div className="container footer-inner"><a href="#inicio" aria-label="ConstruYENDO Revestimientos, volver al inicio"><Brand /></a><p>Revestimientos <span>·</span> Maldonado, Uruguay</p>{adminUrl && <a className="team-access" href={adminUrl}>Acceso del equipo</a>}<CookiePreferences /><a className="footer-domain" href="#inicio">Volver al inicio<Icon name="arrow" size={15} /></a></div></footer>
       <a href={whatsappUrl(visitMessage)} target="_blank" rel="noopener noreferrer" className="floating-whatsapp gradient-orbit" aria-label="Consultar presupuesto por WhatsApp"><Icon name="whatsapp" size={28} /><span>Hablemos de tu obra</span></a>
       {lightbox && <Lightbox photos={lightbox.photos} index={lightbox.index} onIndexChange={(index) => setLightbox((previous) => previous ? { ...previous, index } : null)} onClose={() => setLightbox(null)} />}
     </>

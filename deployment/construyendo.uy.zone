@@ -1,6 +1,6 @@
 ; Registros de la web en GitHub Pages. No incluye correo ni otros servicios.
 $ORIGIN construyendo.uy.
-$TTL 3600
+$TTL 300
 @   IN A     185.199.108.153
 @   IN A     185.199.109.153
 @   IN A     185.199.110.153

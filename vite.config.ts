@@ -7,13 +7,13 @@ import hostedConfiguration from './src/data/cms-hosting.json'
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), cmsLocalPlugin(), {
-    name: 'admin-security-policy', apply: 'build',
+    name: 'site-security-policy', apply: 'build',
     transformIndexHtml(html, context) {
-      if (!context.filename.endsWith('/admin.html')) return html
+      if (!['/admin.html', '/index.html'].some(file => context.filename.endsWith(file))) return html
       const origin = new URL(process.env.VITE_CMS_ORIGIN || hostedConfiguration.origin).origin
-      return [{ tag: 'meta', attrs: { 'http-equiv': 'Content-Security-Policy', content: `default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' ${origin} blob: data:; font-src 'self'; connect-src 'self' ${origin}; base-uri 'none'; object-src 'none'; form-action 'self'` }, injectTo: 'head' }]
+      return [{ tag: 'meta', attrs: { 'http-equiv': 'Content-Security-Policy', content: `default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' ${origin} https://santi-sv.github.io blob: data:; font-src 'self'; connect-src 'self' ${origin}; base-uri 'none'; object-src 'none'; form-action 'self'` }, injectTo: 'head-prepend' }]
     },
   }],
-  server: { port: 5173, strictPort: true, fs: { deny: ['.env', '.env.*', '*.{crt,pem}', '**/.git/**', '**/.cms-data/**', '**/.cms-build/**', '**/.cms-dist/**'] } },
+  server: { port: 5173, strictPort: true, fs: { deny: ['.env', '.env.*', '*.{crt,pem}', '**/.git/**', '**/.cms-data/**', '**/.cms-build/**', '**/.cms-dist/**', '**/cms-hosted/**', '**/.sites-runtime/**', '**/.openai/**', '**/.codex/**', '**/.agents/**', '**/.aws/**', '**/.qa/**'] } },
   build: { target: 'es2022', rollupOptions: { input: { main: resolve('index.html'), admin: resolve('admin.html') } } },
 })

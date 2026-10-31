@@ -2,6 +2,7 @@ import type { ManagedContent, ManagedImage } from './managedContent'
 import projectData from '../data/projects.json'
 import dimensionData from '../data/dimensions.json'
 import { assetUrl } from './assets'
+import { preferencesAllowed } from './privacy'
 
 export const categories = [
   { id: 'todos', label: 'Todos' },
@@ -44,6 +45,7 @@ export const projectMessage = (project: Project) => `Hola, vi en la web el traba
 
 export function savedCategory(): Category {
   try {
+    if (!preferencesAllowed()) { localStorage.removeItem('construyendo:categoria'); return 'todos' }
     const stored = localStorage.getItem('construyendo:categoria')
     return categories.find((category) => category.id === stored)?.id ?? 'todos'
   } catch { return 'todos' }
