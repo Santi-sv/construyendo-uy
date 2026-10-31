@@ -4,6 +4,8 @@ Portafolio estático de ConstruYENDO Revestimientos en Maldonado. React + Vite +
 
 Versión pública autorizada por el usuario el 29/10/2026. Sitio: https://santi-sv.github.io/construyendo-uy/ · Repositorio: https://github.com/Santi-sv/construyendo-uy.
 
+Panel del equipo: https://santi-sv.github.io/construyendo-uy/admin.html. La interfaz se aloja también en GitHub Pages; el acceso por código, los borradores y las imágenes se procesan en el servicio seguro descrito en `server/README.md`. El código no forma parte de los archivos públicos.
+
 Se puede seguir trabajando localmente sin publicar cada cambio. El despliegue de GitHub Pages se ejecuta manualmente desde Actions.
 
 ## Desarrollo

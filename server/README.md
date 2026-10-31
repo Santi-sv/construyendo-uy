@@ -1,6 +1,6 @@
 # Administración privada de ConstruYENDO
 
-Estado: panel publicado en Sites, con D1 y R2. Dirección: https://construyendo-uy-equipo.sam777-varela.chatgpt.site/admin. Proyecto de alojamiento: `appgprj_6ae5409ab6bc8191978a878f69331d02`. La web institucional continúa en GitHub Pages y obtiene el contenido publicado desde este servicio.
+Dirección del panel: https://santi-sv.github.io/construyendo-uy/admin.html. GitHub Pages aloja la interfaz y la web institucional. El servicio seguro de acceso e imágenes continúa en Sites, con D1 y R2, en https://construyendo-uy-equipo.sam777-varela.chatgpt.site. Proyecto del servicio: `appgprj_6ae5409ab6bc8191978a878f69331d02`.
 
 ## Uso local
 
