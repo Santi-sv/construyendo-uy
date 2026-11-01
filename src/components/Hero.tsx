@@ -16,7 +16,6 @@ export function Hero() {
         <source media="(max-width: 767px)" srcSet={mobileSources} sizes="100vw" width={image.mobile.large.width} height={image.mobile.large.height} />
         <img className="workscene-image" src={source(image.desktop.large.src)} srcSet={desktopSources} sizes="100vw" width={image.desktop.large.width} height={image.desktop.large.height} alt={managed?.alt ?? "Imagen ilustrativa: dos instaladores de espalda colocando baldosas de gran formato con niveladores en el interior de una vivienda moderna."} fetchPriority="high" decoding="async" />
       </picture>
-      <figcaption className="workscene-image-caption">{managed?.kind === 'real' ? 'Obra real' : 'Imagen ilustrativa'}</figcaption>
     </figure>
     <div className="cinema-copy container">
       <div className="cinema-eyebrow"><span className="status-dot" />REVESTIMIENTOS / MALDONADO, UY<span className="cinema-edition">OFICIO EN CADA DETALLE</span></div>

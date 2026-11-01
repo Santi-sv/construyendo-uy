@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Brand, Icon } from './components/Icons'
 import { Hero } from './components/Hero'
+import { WorkIntroduction } from './components/WorkIntroduction'
 import { SiteHeader } from './components/SiteHeader'
 import { CoverageAndPayment } from './components/CoverageAndPayment'
 import { QuoteRequest } from './components/QuoteRequest'
@@ -41,6 +42,12 @@ function App() {
   const galleryRef = useRef<HTMLDivElement>(null)
   useScrollReveal(`${category}-${galleryMode}`)
   usePageProgress()
+  useEffect(() => {
+    const id = window.location.hash.slice(1)
+    if (!id) return
+    const frame = requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'instant' }))
+    return () => cancelAnimationFrame(frame)
+  }, [])
   const openPhotos = (photos: Project[], index: number) => {
     const expanded = withPhotoDetails(photos)
     setLightbox({ photos: expanded, index: expanded.findIndex((photo) => photo.id === photos[index].id) })
@@ -89,11 +96,7 @@ function App() {
       <main id="contenido">
         <Hero />
 
-        <div className="benefits-wrap"><div className="benefits container">
-          <div className="benefit" data-reveal="up"><span className="benefit-icon"><Icon name="visit" size={30} /></span><div><strong>Presupuesto en tu obra</strong><span>Sin cargo en Maldonado ciudad y Punta del Este.</span></div></div>
-          <div className="benefit" data-reveal="up"><span className="benefit-icon"><Icon name="money" size={30} /></span><div><strong>Efectivo o transferencia</strong><span>Lo coordinamos con vos.</span></div></div>
-          <div className="benefit" data-reveal="up"><span className="benefit-icon"><Icon name="tile" size={30} /></span><div><strong>Colocación y terminaciones</strong><span>Cuidado en cada detalle.</span></div></div>
-        </div></div>
+        <WorkIntroduction photo={processProjects[0]} />
 
         <section id="trabajos" className="work-section section-space container">
           <div className="section-heading" data-reveal="up"><div><span className="eyebrow section-kicker"><span className="small-line" />NUESTRO PORTAFOLIO</span><h2>Nuestros trabajos<span className="heading-dot">.</span></h2></div><p>Obras reales. Materiales que se sienten.<br className="desktop-break" /> Deslizá para explorar o tocá para ver el detalle.</p></div>
